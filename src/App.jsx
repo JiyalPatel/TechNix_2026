@@ -797,16 +797,15 @@ function TimelineContent() {
                             <div className="relative rounded-lg overflow-hidden border border-white/20 group">
                                 <div className="absolute inset-0 bg-neon-cyan/20 group-hover:bg-transparent transition-colors z-10"></div>
                                 {/* Abstract tech visualization using CSS since we don't have images */}
-                                <div className="h-64 md:h-80 bg-slate-900 w-full relative overflow-hidden aspect-video">
+                                <div className="h-64 md:h-80 bg-slate-900 w-full relative overflow-hidden aspect-video flex justify-center items-center">
                                     <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,_rgba(0,246,255,0.1),transparent_70%)]"></div>
-                                    {/* <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 aspect-video overflow-hidden"> */}
-                                    {/* <Cpu size={120} className="text-white/10 animate-pulse" /> */}
+                                 
                                     <img
                                         src="/TechnixMain.png"
-                                        className=""
+                                        className="w-full h-full object-cover"
                                         alt=""
                                     />
-                                    {/* </div> */}
+                           
                                     {/* Animated bars */}
                                     <div className="absolute bottom-0 left-0 right-0 flex justify-center gap-2 h-full items-end p-8">
                                         {[40, 70, 30, 80, 50, 90, 60].map(
