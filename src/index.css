@@ -1,0 +1,31 @@
+
+@import "tailwindcss";
+
+@keyframes flicker {
+  /* LIGHT ON (Approx 0% to 60%) */
+  /* We add micro-flickers within the "on" period for realism */
+  0%, 45%, 47%, 55%, 60% {
+    opacity: 1;
+    text-shadow: 
+      0 0 5px #fff,
+      0 0 12px rgba(255, 255, 255, 0.5);
+  }
+
+  /* QUICK BLINKS DURING THE "ON" PHASE */
+  46%, 56% {
+    opacity: 0.3;
+    text-shadow: none;
+  }
+
+  /* LIGHT OFF (Approx 60% to 100%) */
+  /* This creates the stable .5s+ "off" look you wanted */
+  61%, 100% {
+    opacity: 0.2;
+    text-shadow: none;
+  }
+}
+
+.animate-flicker {
+  /* 2 seconds total means 40% (the off state) lasts exactly 0.8s */
+  animation: flicker 2s linear infinite;
+}
