@@ -104,7 +104,7 @@ export const GAMES = [
         prize: "₹2,500 Prize Pool",
         icon: <MapPin size={64} className="text-white" />,
         bgGradient: "bg-gradient-to-br from-blue-900 to-indigo-900",
-        formLink: "https://docs.google.com/forms/d/e/hunt/viewform"
+        formLink: "https://docs.google.com/forms/d/e/1FAIpQLSfZMbx8aYccYiIdHwRnLFKGo6K75Ow6tfMPQAz5DHD26m1A3A/viewform?usp=dialog"
     },
 ];
 
