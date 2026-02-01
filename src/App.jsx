@@ -160,11 +160,22 @@ const styles = `
     --bg-panel: rgba(10, 14, 39, 0.7);
   }
 
-  body {
+  * {
+    box-sizing: border-box;
+  }
+
+  html, body {
     background-color: var(--bg-dark);
     font-family: 'Rajdhani', sans-serif;
     color: white;
     overflow-x: hidden;
+    max-width: 100vw;
+    margin: 0;
+    padding: 0;
+  }
+  
+  body {
+    position: relative;
   }
 
   h1, h2, h3, h4, .font-orbitron {
@@ -218,6 +229,12 @@ const styles = `
     60% { clip: rect(41px, 9999px, 75px, 0); }
     80% { clip: rect(13px, 9999px, 55px, 0); }
     100% { clip: rect(89px, 9999px, 2px, 0); }
+  }
+
+  /* Prevent horizontal scroll on mobile */
+  section {
+    overflow-x: hidden;
+    max-width: 100vw;
   }
 
   /* Neon Borders & Glows */
@@ -770,7 +787,7 @@ const App = () => {
     };
 
     return (
-        <div className="min-h-screen relative">
+        <div className="min-h-screen relative overflow-x-hidden w-full max-w-full">
             <style>{styles}</style>
             <div className="scanlines"></div>
             <CyberBackground />
