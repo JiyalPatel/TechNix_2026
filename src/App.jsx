@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
-import { motion, useInView } from 'framer-motion';
+import { motion, useInView } from "framer-motion";
 import {
     Terminal,
     Cpu,
@@ -22,6 +22,7 @@ import {
     Mail,
     ArrowRight,
     Sword,
+    Phone,
 } from "lucide-react";
 
 const FEST_NAME = "TECHNIX";
@@ -538,65 +539,103 @@ const App = () => {
         window.open("https://docs.google.com/forms", "_blank");
     };
 
-function TimelineContent() {
-  const ref = React.useRef(null);
-  const isInView = useInView(ref, { once: false, margin: "-100px" });
+    function TimelineContent() {
+        const ref = React.useRef(null);
+        const isInView = useInView(ref, { once: false, margin: "-100px" });
 
-  return (
-    <div className="relative max-w-4xl mx-auto" ref={ref}>
-      {/* Animated Center Line */}
-      <motion.div 
-        className="absolute left-4 md:left-1/2 top-0 bottom-0 w-px bg-gradient-to-b from-transparent via-cyan-400 to-transparent"
-        initial={{ scaleY: 0 }}
-        animate={isInView ? { scaleY: 1 } : { scaleY: 0 }}
-        transition={{ duration: 1.5, ease: "easeInOut" }}
-        style={{ transformOrigin: 'top', transform: 'translateX(-50%)' }}
-      />
+        return (
+            <div className="relative max-w-4xl mx-auto" ref={ref}>
+                {/* Animated Center Line */}
+                <motion.div
+                    className="absolute left-4 md:left-1/2 top-0 bottom-0 w-px bg-gradient-to-b from-transparent via-cyan-400 to-transparent"
+                    initial={{ scaleY: 0 }}
+                    animate={isInView ? { scaleY: 1 } : { scaleY: 0 }}
+                    transition={{ duration: 1.5, ease: "easeInOut" }}
+                    style={{
+                        transformOrigin: "top",
+                        transform: "translateX(-50%)",
+                    }}
+                />
 
-      <div className="space-y-12">
-        {timelineEvents.map((event, idx) => (
-          <div 
-            key={idx} 
-            className={`relative flex items-center gap-8 ${idx % 2 === 0 ? 'md:flex-row-reverse' : 'md:flex-row'}`}
-          >
-            <motion.div 
-              className="flex-1 ml-12 md:ml-0"
-              initial={{ opacity: 0, x: idx % 2 === 0 ? 100 : -100 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: false }}
-              transition={{ delay: idx * 0.15, duration: 0.6, ease: "easeOut" }}
-            >
-              <div className={`p-6 glass-panel rounded-xl border border-white/5 hover:border-neon-cyan/50 transition-colors ${idx % 2 === 0 ? 'md:text-left' : 'md:text-right'}`}>
-                <h3 className="text-xl font-bold font-orbitron text-white mb-1">{event.title}</h3>
-                <div className={`flex items-center gap-2 text-neon-pink mb-2 ${idx % 2 === 0 ? 'md:justify-start' : 'md:justify-end'}`}>
-                  <Clock size={14} />
-                  <span className="font-mono text-sm">{event.time}</span>
+                <div className="space-y-12">
+                    {timelineEvents.map((event, idx) => (
+                        <div
+                            key={idx}
+                            className={`relative flex items-center gap-8 ${idx % 2 === 0 ? "md:flex-row-reverse" : "md:flex-row"}`}
+                        >
+                            <motion.div
+                                className="flex-1 ml-12 md:ml-0"
+                                initial={{
+                                    opacity: 0,
+                                    x: idx % 2 === 0 ? 100 : -100,
+                                }}
+                                whileInView={{ opacity: 1, x: 0 }}
+                                viewport={{ once: false }}
+                                transition={{
+                                    delay: idx * 0.15,
+                                    duration: 0.6,
+                                    ease: "easeOut",
+                                }}
+                            >
+                                <div
+                                    className={`p-6 glass-panel rounded-xl border border-white/5 hover:border-neon-cyan/50 transition-colors ${idx % 2 === 0 ? "md:text-left" : "md:text-right"}`}
+                                >
+                                    <h3 className="text-xl font-bold font-orbitron text-white mb-1">
+                                        {event.title}
+                                    </h3>
+                                    <div
+                                        className={`flex items-center gap-2 text-neon-pink mb-2 ${idx % 2 === 0 ? "md:justify-start" : "md:justify-end"}`}
+                                    >
+                                        <Clock size={14} />
+                                        <span className="font-mono text-sm">
+                                            {event.time}
+                                        </span>
+                                    </div>
+                                    <p className="text-gray-400 text-sm flex items-center gap-2 justify-start md:justify-[inherit]">
+                                        {idx % 2 !== 0 && (
+                                            <span className="hidden md:inline">
+                                                {event.desc}
+                                            </span>
+                                        )}
+                                        <MapPin
+                                            size={14}
+                                            className="text-gray-500"
+                                        />
+                                        <span className="md:hidden">
+                                            {event.desc}
+                                        </span>
+                                        {idx % 2 === 0 && (
+                                            <span className="hidden md:inline">
+                                                {event.desc}
+                                            </span>
+                                        )}
+                                    </p>
+                                </div>
+                            </motion.div>
+
+                            <motion.div
+                                className="absolute left-4 md:left-1/2 transform -translate-x-1/2 w-4 h-4 bg-black border-2 border-neon-cyan rounded-full shadow-[0_0_10px_#00f6ff] z-10"
+                                initial={{ scale: 0, opacity: 0 }}
+                                whileInView={{ scale: 1, opacity: 1 }}
+                                viewport={{ once: false }}
+                                transition={{
+                                    delay: idx * 0.15 + 0.3,
+                                    duration: 0.5,
+                                    ease: "backOut",
+                                }}
+                                whileHover={{
+                                    scale: 1.3,
+                                    boxShadow: "0 0 20px #00f6ff",
+                                }}
+                            />
+
+                            <div className="hidden md:block flex-1"></div>
+                        </div>
+                    ))}
                 </div>
-                <p className="text-gray-400 text-sm flex items-center gap-2 justify-start md:justify-[inherit]">
-                  {idx % 2 !== 0 && <span className="hidden md:inline">{event.desc}</span>}
-                  <MapPin size={14} className="text-gray-500" />
-                  <span className="md:hidden">{event.desc}</span>
-                  {idx % 2 === 0 && <span className="hidden md:inline">{event.desc}</span>}
-                </p>
-              </div>
-            </motion.div>
-
-            <motion.div 
-              className="absolute left-4 md:left-1/2 transform -translate-x-1/2 w-4 h-4 bg-black border-2 border-neon-cyan rounded-full shadow-[0_0_10px_#00f6ff] z-10"
-              initial={{ scale: 0, opacity: 0 }}
-              whileInView={{ scale: 1, opacity: 1 }}
-              viewport={{ once: false }}
-              transition={{ delay: idx * 0.15 + 0.3, duration: 0.5, ease: "backOut" }}
-              whileHover={{ scale: 1.3, boxShadow: "0 0 20px #00f6ff" }}
-            />
-            
-            <div className="hidden md:block flex-1"></div>
-          </div>
-        ))}
-      </div>
-    </div>
-  );
-}
+            </div>
+        );
+    }
 
     return (
         <div className="min-h-screen relative">
@@ -796,13 +835,13 @@ function TimelineContent() {
                                 {/* Abstract tech visualization using CSS since we don't have images */}
                                 <div className="h-64 md:h-80 bg-slate-900 w-full relative overflow-hidden aspect-video flex justify-center items-center">
                                     <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,_rgba(0,246,255,0.1),transparent_70%)]"></div>
-                                 
+
                                     <img
                                         src="/TechnixMain.png"
                                         className="w-full h-full object-cover"
                                         alt=""
                                     />
-                           
+
                                     {/* Animated bars */}
                                     <div className="absolute bottom-0 left-0 right-0 flex justify-center gap-2 h-full items-end p-8">
                                         {[40, 70, 30, 80, 50, 90, 60].map(
@@ -896,22 +935,22 @@ function TimelineContent() {
             </section>
 
             {/* --- TIMELINE SECTION --- */}
-{/* --- TIMELINE SECTION --- */}
-<section id="timeline" className="py-20 relative">
-  <div className="container mx-auto px-4">
-    <motion.h2 
-      initial={{ opacity: 0, y: -20 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true }}
-      transition={{ duration: 0.6 }}
-      className="text-3xl md:text-5xl font-orbitron font-bold text-center mb-16"
-    >
-      EVENT <span className="text-neon-yellow">TIMELINE</span>
-    </motion.h2>
-    
-    <TimelineContent />
-  </div>
-</section>
+            {/* --- TIMELINE SECTION --- */}
+            <section id="timeline" className="py-20 relative">
+                <div className="container mx-auto px-4">
+                    <motion.h2
+                        initial={{ opacity: 0, y: -20 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 0.6 }}
+                        className="text-3xl md:text-5xl font-orbitron font-bold text-center mb-16"
+                    >
+                        EVENT <span className="text-neon-yellow">TIMELINE</span>
+                    </motion.h2>
+
+                    <TimelineContent />
+                </div>
+            </section>
             {/* --- CTA / REGISTER SECTION --- */}
             <section className="py-20 relative overflow-hidden">
                 <div className="absolute inset-0 bg-gradient-to-r from-neon-pink/10 to-neon-cyan/10"></div>
@@ -956,9 +995,10 @@ function TimelineContent() {
                             </div>
                             <p className="text-gray-400 mb-6 max-w-sm">
                                 The ultimate convergence of technology,
-                                innovation, and competition. Hosted by Vishwakarma Government Engineering college.
+                                innovation, and competition. Hosted by
+                                Vishwakarma Government Engineering college.
                             </p>
-                            <div className="flex gap-4">
+                            {/* <div className="flex gap-4">
                                 {[Instagram, Twitter, Linkedin, Mail].map(
                                     (Icon, i) => (
                                         <a
@@ -970,7 +1010,7 @@ function TimelineContent() {
                                         </a>
                                     ),
                                 )}
-                            </div>
+                            </div> */}
                         </div>
 
                         <div>
@@ -978,22 +1018,18 @@ function TimelineContent() {
                                 Quick Links
                             </h4>
                             <ul className="space-y-3 text-gray-400">
-                                {[
-                                    "Home",
-                                    "About Us",
-                                    "Games",
-                                    "Schedule",
-                                    "Sponsors",
-                                ].map((item) => (
-                                    <li key={item}>
-                                        <a
-                                            href="#"
-                                            className="hover:text-neon-cyan transition-colors"
-                                        >
-                                            {item}
-                                        </a>
-                                    </li>
-                                ))}
+                                {["home", "about", "games", "timeline"].map(
+                                    (item) => (
+                                        <li key={item}>
+                                            <a
+                                                href={`#${item}`}
+                                                className="hover:text-neon-cyan transition-colors"
+                                            >
+                                                {item.toUpperCase()}
+                                            </a>
+                                        </li>
+                                    ),
+                                )}
                             </ul>
                         </div>
 
@@ -1011,7 +1047,26 @@ function TimelineContent() {
                                         Vishwakarma Government Engineering
                                         College,
                                         <br />
-                                        Main Campus, Tech City
+                                        Main Campus
+                                    </span>
+                                </li>
+                                <li className="flex items-start gap-3">
+                                    <Phone
+                                        size={18}
+                                        className="text-neon-pink mt-1"
+                                    />
+                                    <span>
+                                        <span>
+                                            <a href="tel:8799628088" className="border-b border-b-transparent hover:border-b-pink-500 ">
+                                                8799628088
+                                            </a>
+                                        </span>
+                                        <br />
+                                        <span>
+                                            <a href="tel:9173402267" className="border-b border-b-transparent hover:border-b-pink-500 ">
+                                                9173402267
+                                            </a>
+                                        </span>
                                     </span>
                                 </li>
                                 <li className="flex items-center gap-3">
@@ -1019,7 +1074,15 @@ function TimelineContent() {
                                         size={18}
                                         className="text-neon-pink"
                                     />
-                                    <span>contact@techverse2025.com</span>
+                                    <span>
+                                        {" "}
+                                        <a
+                                            className="hover:border-b hover:border-b-pink-500"
+                                            href="mailto:vyasvraj47@gmail.com"
+                                        >
+                                            vyasvraj47@gmail.com
+                                        </a>
+                                    </span>
                                 </li>
                             </ul>
                         </div>
