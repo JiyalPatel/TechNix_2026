@@ -504,25 +504,25 @@ const App = () => {
         {
             time: "11:00 AM",
             title: "AD Zapp",
-            desc: "Main Auditorium",
+            desc: "Main Auditorium (A - Block)",
             icon: <Target />,
         },
         {
             time: "12:00 PM",
             title: "Tech Quiz",
-            desc: "Lab Block A",
+            desc: "B-201",
             icon: <Code />,
         },
         {
             time: "01:00 PM",
             title: "Colaborative Coding",
-            desc: "Seminar Hall",
+            desc: "B-203",
             icon: <Zap />,
         },
         {
             time: "02:00 PM",
             title: "Treasure Hunt",
-            desc: "Room 304",
+            desc: "A Block",
             icon: <Cpu />,
         },
         {
