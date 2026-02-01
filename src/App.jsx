@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
-import { motion, useInView } from "framer-motion";
+import { motion, useInView, AnimatePresence } from "framer-motion";
 import {
     Terminal,
     Cpu,
@@ -12,31 +12,151 @@ import {
     ChevronRight,
     Menu,
     X,
-    Gamepad2,
     Trophy,
     Users,
-    ExternalLink,
-    Instagram,
-    Twitter,
-    Linkedin,
-    Mail,
-    ArrowRight,
     Sword,
     Phone,
+    Mail,
+    AlertTriangle,
 } from "lucide-react";
 
-const FEST_NAME = "TECHNIX";
+/* ==========================================================================
+   --- CONSTANTS & DATA (constants.js) ---
+   Modify this section to update site content, game data, and settings.
+   ==========================================================================
+*/
 
+export const THEME = {
+    colors: {
+        cyan: "#00f6ff",
+        pink: "#ff006e",
+        yellow: "#ffbe0b",
+        dark: "#050b14",
+    },
+};
 
-/* --- CUSTOM STYLES & ANIMATIONS --- */
+export const FEST_DATA = {
+    name: "TECHNIX",
+    year: "2026",
+    fullDate: "February 06, 2026 10:30:00",
+    displayDate: "February 6, 2026",
+    location: "VGEC Campus",
+    organizer: "Vishwakarma Government Engineering College",
+    mainRegistrationLink: "https://docs.google.com/forms/d/e/1FAIpQLSfxx_dx0KLlmjr3MiRTr9Ifr9tOtdOVMN7MX1DdzaPyThvKfg/viewform", // Main event reg link
+    brochureLink: "#", // Link to brochure PDF
+};
+
+export const NAV_LINKS = [
+    { id: "home", label: "Home" },
+    { id: "about", label: "About" },
+    { id: "games", label: "Games" },
+    { id: "timeline", label: "Timeline" },
+    { id: "contact", label: "Contact" },
+];
+
+export const STATS = [
+    { label: "Epic Games", value: "4", color: "text-neon-cyan" },
+    { label: "Prize Pool", value: "₹10k", color: "text-neon-pink" },
+    { label: "Participants", value: "250+", color: "text-neon-yellow" },
+    { label: "Day Fest", value: "1", color: "text-white" },
+];
+
+export const GAMES = [
+    {
+        id: "adzap",
+        title: "AdZap",
+        img: "/AdZapp.png",
+        description: "Pitch your wildest ideas! Creativity meets marketing in this high-energy branding battle.",
+        teamSize: "Team of 2",
+        prize: "₹2,500 Prize Pool",
+        icon: <Zap size={64} className="text-white" />,
+        bgGradient: "bg-gradient-to-br from-purple-900 to-blue-900",
+        formLink: "https://docs.google.com/forms/d/e/1FAIpQLSeM05gW0Pm7o7hCHXzVyscsmjwdITTWPlVWafgtYKLJNQv7hw/viewform?usp=dialog" // Specific game reg link
+    },
+    {
+        id: "coding",
+        title: "Colaborative Coding",
+        img: "/ColaborativeCoding.png",
+        description: "Two minds, one code. Solve complex algorithms with your partner under extreme time pressure.",
+        teamSize: "Team of 2",
+        prize: "₹2,500 Prize Pool",
+        icon: <Code size={64} className="text-white" />,
+        bgGradient: "bg-gradient-to-br from-green-900 to-teal-900",
+        formLink: "https://docs.google.com/forms/d/e/1FAIpQLSesoa6hELTsQRcVlrC_eyoBzq0Xc988lFJFAJz1fIRjz8XmyA/viewform?usp=dialog"
+    },
+    {
+        id: "quiz",
+        title: "Tech Quiz",
+        img: "/Quiz.png",
+        description: "Test your tech IQ. From silicon chips to neural networks, do you know it all?",
+        teamSize: "Solo",
+        prize: "₹2,500 Prize Pool",
+        icon: <Cpu size={64} className="text-white" />,
+        bgGradient: "bg-gradient-to-br from-red-900 to-orange-900",
+        formLink: "https://docs.google.com/forms/d/e/1FAIpQLSd9e-dZvCUm3XIbqbV7E2UBlbLbQw56YXvpWQFe7PtWGsrSeA/viewform?usp=dialog"
+    },
+    {
+        id: "hunt",
+        title: "Treasure Hunt",
+        img: "/TreasureHunt.png",
+        description: "Decide. Discover. Dominate. A campus-wide hunt solving crypto-style clues.",
+        teamSize: "Team of 4",
+        prize: "₹2,500 Prize Pool",
+        icon: <MapPin size={64} className="text-white" />,
+        bgGradient: "bg-gradient-to-br from-blue-900 to-indigo-900",
+        formLink: "https://docs.google.com/forms/d/e/hunt/viewform"
+    },
+];
+
+export const TIMELINE_EVENTS = [
+    {
+        time: "11:00 AM",
+        title: "AD Zapp",
+        desc: "Main Auditorium (A - Block)",
+        icon: <Target />,
+    },
+    {
+        time: "12:00 PM",
+        title: "Tech Quiz",
+        desc: "B-201",
+        icon: <Code />,
+    },
+    {
+        time: "01:00 PM",
+        title: "Code Combat",
+        desc: "B-203",
+        icon: <Zap />,
+    },
+    {
+        time: "02:00 PM",
+        title: "Treasure Hunt",
+        desc: "A Block",
+        icon: <Cpu />,
+    },
+    {
+        time: "04:00 PM",
+        title: "Prize Distribution",
+        desc: "Main Auditorium (A - Block)",
+        icon: <MapPin />,
+    },
+];
+
+export const CONTACT_INFO = {
+    address: ["Vishwakarma Government Engineering College,", "Main Campus"],
+    phones: ["8799628088", "9173402267"],
+    email: "vyasvraj47@gmail.com",
+    copyright: "Designed With ❤️ From Fest Crew"
+};
+
+/* --- CUSTOM STYLES (styles.css equivalent) --- */
 const styles = `
   @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700;900&family=Rajdhani:wght@300;400;500;600;700&display=swap');
 
   :root {
-    --neon-cyan: #00f6ff;
-    --neon-pink: #ff006e;
-    --neon-yellow: #ffbe0b;
-    --bg-dark: #050b14;
+    --neon-cyan: ${THEME.colors.cyan};
+    --neon-pink: ${THEME.colors.pink};
+    --neon-yellow: ${THEME.colors.yellow};
+    --bg-dark: ${THEME.colors.dark};
     --bg-panel: rgba(10, 14, 39, 0.7);
   }
 
@@ -103,7 +223,6 @@ const styles = `
   /* Neon Borders & Glows */
   .neon-border {
     position: relative;
-    overflow: hidden;
   }
   
   .neon-border::before {
@@ -111,7 +230,7 @@ const styles = `
     position: absolute;
     top: 0; left: 0; right: 0; bottom: 0;
     border-radius: inherit;
-    padding: 2px;
+    padding: 1px;
     background: linear-gradient(45deg, var(--neon-cyan), transparent, var(--neon-pink));
     -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
     -webkit-mask-composite: xor;
@@ -173,6 +292,11 @@ const styles = `
   }
 `;
 
+/* ==========================================================================
+   --- COMPONENTS ---
+   ==========================================================================
+*/
+
 /* --- ANIMATED BACKGROUND COMPONENT --- */
 const CyberBackground = () => {
     const canvasRef = useRef(null);
@@ -206,7 +330,8 @@ const CyberBackground = () => {
                 this.speedX = (Math.random() - 0.5) * 0.5;
                 this.speedY = (Math.random() - 0.5) * 0.5;
                 this.opacity = Math.random() * 0.5 + 0.1;
-                this.color = Math.random() > 0.5 ? "#00f6ff" : "#ff006e";
+                // Use theme colors
+                this.color = Math.random() > 0.5 ? THEME.colors.cyan : THEME.colors.pink;
             }
 
             update() {
@@ -266,7 +391,7 @@ const CyberBackground = () => {
         for (let i = 0; i < 100; i++) particles.push(new Particle());
 
         const animate = () => {
-            ctx.fillStyle = "#050b14";
+            ctx.fillStyle = THEME.colors.dark;
             ctx.fillRect(0, 0, w, h);
 
             drawGrid();
@@ -320,7 +445,7 @@ const CountdownTimer = () => {
     });
 
     useEffect(() => {
-        const targetDate = new Date("February 06, 2026 10:30:00").getTime();
+        const targetDate = new Date(FEST_DATA.fullDate).getTime();
 
         const interval = setInterval(() => {
             const now = new Date().getTime();
@@ -375,21 +500,86 @@ const CountdownTimer = () => {
                 label="Mins"
                 color="text-neon-yellow"
             />
-            <TimeUnit
-                value={timeLeft.seconds}
-                label="Secs"
-                color="text-white"
-            />
+            <div className="hidden md:flex">
+                <TimeUnit
+                    value={timeLeft.seconds}
+                    label="Secs"
+                    color="text-white"
+                />
+            </div>
+        </div>
+    );
+};
+
+/* --- POPUP COMPONENT --- */
+const RegistrationModal = ({ isOpen, onClose, game, onRegisterMain, onJoinGame }) => {
+    if (!isOpen) return null;
+
+    return (
+        <div className="fixed inset-0 z-[100] flex items-center justify-center px-4">
+            <motion.div 
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                className="absolute inset-0 bg-black/80 backdrop-blur-sm" 
+                onClick={onClose}
+            ></motion.div>
+            
+            <motion.div 
+                initial={{ scale: 0.9, opacity: 0, y: 20 }}
+                animate={{ scale: 1, opacity: 1, y: 0 }}
+                exit={{ scale: 0.9, opacity: 0, y: 20 }}
+                transition={{ type: "spring", stiffness: 300, damping: 30 }}
+                className="relative w-full max-w-lg glass-panel rounded-xl neon-border overflow-hidden z-[101]"
+            >
+                {/* Header */}
+                <div className="bg-white/5 p-4 flex justify-between items-center border-b border-white/10">
+                    <div className="flex items-center gap-2">
+                        <Terminal className="text-neon-cyan" size={20} />
+                        <h3 className="font-orbitron font-bold text-white tracking-wider text-sm md:text-base">SYSTEM ALERT</h3>
+                    </div>
+                    <button onClick={onClose} className="text-gray-400 hover:text-white transition-colors">
+                        <X size={24} />
+                    </button>
+                </div>
+
+                <div className="p-6 md:p-8 text-center">
+                    <div className="w-16 h-16 bg-neon-cyan/10 rounded-full flex items-center justify-center mx-auto mb-6 border border-neon-cyan/30 shadow-[0_0_15px_rgba(0,246,255,0.2)]">
+                        <AlertTriangle className="text-neon-cyan w-8 h-8" />
+                    </div>
+                    
+                    <h2 className="text-2xl font-orbitron font-bold mb-3 uppercase tracking-wide">Registration Status</h2>
+                    <p className="text-gray-300 mb-8 leading-relaxed">
+                        To participate in <span className="text-neon-pink font-bold">{game?.title}</span>, you must be a registered attendee of the main <span className="text-neon-yellow">{FEST_DATA.name}</span> event.
+                    </p>
+
+                    <div className="space-y-4">
+                        <button 
+                            onClick={onJoinGame}
+                            className="w-full py-4 bg-neon-cyan/10 border border-neon-cyan text-neon-cyan hover:bg-neon-cyan hover:text-black font-bold font-orbitron tracking-wider clip-path-slant transition-all duration-300 flex items-center justify-center gap-2 group"
+                        >
+                            <span>YES, I HAVE REGISTERED</span>
+                            <ChevronRight size={18} className="group-hover:translate-x-1 transition-transform" />
+                        </button>
+                        
+                        <button 
+                            onClick={onRegisterMain}
+                            className="w-full py-4 bg-transparent border border-white/20 text-gray-300 hover:border-neon-pink hover:text-neon-pink font-bold font-orbitron tracking-wider clip-path-slant transition-all duration-300"
+                        >
+                            NO, REGISTER ME FIRST
+                        </button>
+                    </div>
+                </div>
+
+                {/* Decorative footer line */}
+                <div className="h-0.5 w-full bg-gradient-to-r from-neon-cyan via-neon-pink to-neon-yellow"></div>
+            </motion.div>
         </div>
     );
 };
 
 /* --- GAME CARD COMPONENT --- */
-const GameCard = ({ game, onRegister }) => {
-
-    
-const [showConfirmPopup, setShowConfirmPopup] = useState(false);
-
+const GameCard = ({ game, onJoin }) => {
     return (
         <div className="group relative glass-panel rounded-xl overflow-hidden hover-glow transition-all duration-300 transform hover:-translate-y-2">
             {/* Image/Icon Header */}
@@ -397,8 +587,8 @@ const [showConfirmPopup, setShowConfirmPopup] = useState(false);
                 className={`h-40 ${game.bgGradient} flex items-center justify-center relative overflow-hidden`}
             >
                 <div className="absolute inset-0 bg-black opacity-30"></div>
-                <div className="relative z-10 transform group-hover:scale-110 transition-transform duration-500 aspect-video">
-                    <img src={`${game.img}`} alt="" />
+                <div className="relative z-10 transform group-hover:scale-110 transition-transform duration-500 aspect-video flex justify-center items-center">
+                    <img src={`${game.img}`} alt={game.title} className="w-full h-full object-cover drop-shadow-2xl" />
                 </div>
                 {/* Overlay shine effect */}
                 <div className="absolute inset-0 bg-gradient-to-tr from-transparent via-white to-transparent opacity-0 group-hover:opacity-10 w-full h-full transform -translate-x-full group-hover:translate-x-full transition-transform duration-1000"></div>
@@ -408,7 +598,7 @@ const [showConfirmPopup, setShowConfirmPopup] = useState(false);
                 <h3 className="text-2xl font-orbitron font-bold mb-2 group-hover:text-neon-cyan transition-colors">
                     {game.title}
                 </h3>
-                <p className="text-gray-300 text-sm mb-4 line-clamp-2 h-10">
+                <p className="text-gray-300 text-sm mb-4 line-clamp-2 min-h-[2.5rem]">
                     {game.description}
                 </p>
 
@@ -424,8 +614,7 @@ const [showConfirmPopup, setShowConfirmPopup] = useState(false);
                 </div>
 
                 <button
-                    // onClick={() => onRegister(game.id)}
-                    onClick={() => setShowConfirmPopup(true)}
+                    onClick={() => onJoin(game)}
                     className="w-full py-3 bg-transparent border border-neon-cyan text-neon-cyan font-bold uppercase tracking-wider hover:bg-neon-cyan hover:text-black transition-all duration-300 clip-path-slant flex items-center justify-center gap-2"
                 >
                     Join <ChevronRight size={16} />
@@ -438,10 +627,111 @@ const [showConfirmPopup, setShowConfirmPopup] = useState(false);
     );
 };
 
+/* --- TIMELINE CONTENT COMPONENT --- */
+function TimelineContent() {
+    const ref = React.useRef(null);
+    const isInView = useInView(ref, { once: false, margin: "-100px" });
+
+    return (
+        <div className="relative max-w-4xl mx-auto" ref={ref}>
+            {/* Animated Center Line */}
+            <motion.div
+                className="absolute left-4 md:left-1/2 top-0 bottom-0 w-px bg-gradient-to-b from-transparent via-cyan-400 to-transparent"
+                initial={{ scaleY: 0 }}
+                animate={isInView ? { scaleY: 1 } : { scaleY: 0 }}
+                transition={{ duration: 1.5, ease: "easeInOut" }}
+                style={{
+                    transformOrigin: "top",
+                    transform: "translateX(-50%)",
+                }}
+            />
+
+            <div className="space-y-12">
+                {TIMELINE_EVENTS.map((event, idx) => (
+                    <div
+                        key={idx}
+                        className={`relative flex items-center gap-8 ${idx % 2 === 0 ? "md:flex-row-reverse" : "md:flex-row"}`}
+                    >
+                        <motion.div
+                            className="flex-1 ml-12 md:ml-0"
+                            initial={{
+                                opacity: 0,
+                                x: idx % 2 === 0 ? 100 : -100,
+                            }}
+                            whileInView={{ opacity: 1, x: 0 }}
+                            viewport={{ once: false }}
+                            transition={{
+                                delay: idx * 0.15,
+                                duration: 0.6,
+                                ease: "easeOut",
+                            }}
+                        >
+                            <div
+                                className={`p-6 glass-panel rounded-xl border border-white/5 hover:border-neon-cyan/50 transition-colors ${idx % 2 === 0 ? "md:text-left" : "md:text-right"}`}
+                            >
+                                <h3 className="text-xl font-bold font-orbitron text-white mb-1">
+                                    {event.title}
+                                </h3>
+                                <div
+                                    className={`flex items-center gap-2 text-neon-pink mb-2 ${idx % 2 === 0 ? "md:justify-start" : "md:justify-end"}`}
+                                >
+                                    <Clock size={14} />
+                                    <span className="font-mono text-sm">
+                                        {event.time}
+                                    </span>
+                                </div>
+                                <p className="text-gray-400 text-sm flex items-center gap-2 justify-start md:justify-[inherit]">
+                                    {idx % 2 !== 0 && (
+                                        <span className="hidden md:inline">
+                                            {event.desc}
+                                        </span>
+                                    )}
+                                    <MapPin
+                                        size={14}
+                                        className="text-gray-500"
+                                    />
+                                    <span className="md:hidden">
+                                        {event.desc}
+                                    </span>
+                                    {idx % 2 === 0 && (
+                                        <span className="hidden md:inline">
+                                            {event.desc}
+                                        </span>
+                                    )}
+                                </p>
+                            </div>
+                        </motion.div>
+
+                        <motion.div
+                            className="absolute left-4 md:left-1/2 transform -translate-x-1/2 w-4 h-4 bg-black border-2 border-neon-cyan rounded-full shadow-[0_0_10px_#00f6ff] z-10"
+                            initial={{ scale: 0, opacity: 0 }}
+                            whileInView={{ scale: 1, opacity: 1 }}
+                            viewport={{ once: false }}
+                            transition={{
+                                delay: idx * 0.15 + 0.3,
+                                duration: 0.5,
+                                ease: "backOut",
+                            }}
+                            whileHover={{
+                                scale: 1.3,
+                                boxShadow: "0 0 20px #00f6ff",
+                            }}
+                        />
+
+                        <div className="hidden md:block flex-1"></div>
+                    </div>
+                ))}
+            </div>
+        </div>
+    );
+}
+
 /* --- MAIN APP COMPONENT --- */
 const App = () => {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const [activeTab, setActiveTab] = useState("home");
+    const [modalOpen, setModalOpen] = useState(false);
+    const [selectedGame, setSelectedGame] = useState(null);
 
     const scrollToSection = (id) => {
         const element = document.getElementById(id);
@@ -452,202 +742,51 @@ const App = () => {
         }
     };
 
-    const navLinks = [
-        { id: "home", label: "Home" },
-        { id: "about", label: "About" },
-        { id: "games", label: "Games" },
-        { id: "timeline", label: "Timeline" },
-        { id: "contact", label: "Contact" },
-    ];
-
-    const games = [
-        {
-            id: "adzap",
-            img: "/AdZapp.png",
-            title: "AdZap",
-            description:
-                "Pitch your wildest ideas! Creativity meets marketing in this high-energy branding battle.",
-            teamSize: "Team of 2",
-            prize: "₹2,500 Prize Pool",
-            icon: <Zap size={64} className="text-white" />,
-            bgGradient: "bg-gradient-to-br from-purple-900 to-blue-900",
-        },
-        {
-            id: "coding",
-            title: "Collaborative Coding",
-            img: "/ColaborativeCoding.png",
-            description:
-                "Two minds, one code. Solve complex algorithms with your partner under extreme time pressure.",
-            teamSize: "Team of 2",
-            prize: "₹2,500 Prize Pool",
-            icon: <Code size={64} className="text-white" />,
-            bgGradient: "bg-gradient-to-br from-green-900 to-teal-900",
-        },
-        {
-            id: "quiz",
-            img: "/Quiz.png",
-            title: "Tech Quiz",
-            description:
-                "Test your tech IQ. From silicon chips to neural networks, do you know it all?",
-            teamSize: "Solo",
-            prize: "₹2,500 Prize Pool",
-            icon: <Cpu size={64} className="text-white" />,
-            bgGradient: "bg-gradient-to-br from-red-900 to-orange-900",
-        },
-        {
-            id: "hunt",
-            img: "/TreasureHunt.png",
-            title: "Treasure Hunt",
-            description:
-                "Decide. Discover. Dominate. A campus-wide hunt solving crypto-style clues.",
-            teamSize: "Team of 4",
-            prize: "₹2,500 Prize Pool",
-            icon: <MapPin size={64} className="text-white" />,
-            bgGradient: "bg-gradient-to-br from-blue-900 to-indigo-900",
-        },
-    ];
-
-    const timelineEvents = [
-        {
-            time: "11:00 AM",
-            title: "AD Zapp",
-            desc: "Main Auditorium (A - Block)",
-            icon: <Target />,
-        },
-        {
-            time: "12:00 PM",
-            title: "Tech Quiz",
-            desc: "B-201",
-            icon: <Code />,
-        },
-        {
-            time: "01:00 PM",
-            title: "Colaborative Coding",
-            desc: "B-203",
-            icon: <Zap />,
-        },
-        {
-            time: "02:00 PM",
-            title: "Treasure Hunt",
-            desc: "A Block",
-            icon: <Cpu />,
-        },
-        {
-            time: "04:00 PM",
-            title: "Prize Distribution Ceremony",
-            desc: "Main Auditorium (A - Block)",
-            icon: <MapPin />,
-        },
-    ];
-
-    const handleRegister = (gameId) => {
-        // Placeholder for Google Form logic
-        window.open("https://docs.google.com/forms", "_blank");
+    // --- POPUP LOGIC ---
+    const openJoinModal = (game) => {
+        setSelectedGame(game);
+        setModalOpen(true);
     };
 
-    function TimelineContent() {
-        const ref = React.useRef(null);
-        const isInView = useInView(ref, { once: false, margin: "-100px" });
+    const closeJoinModal = () => {
+        setModalOpen(false);
+        setTimeout(() => setSelectedGame(null), 300);
+    };
 
-        return (
-            <div className="relative max-w-4xl mx-auto" ref={ref}>
-                {/* Animated Center Line */}
-                <motion.div
-                    className="absolute left-4 md:left-1/2 top-0 bottom-0 w-px bg-gradient-to-b from-transparent via-cyan-400 to-transparent"
-                    initial={{ scaleY: 0 }}
-                    animate={isInView ? { scaleY: 1 } : { scaleY: 0 }}
-                    transition={{ duration: 1.5, ease: "easeInOut" }}
-                    style={{
-                        transformOrigin: "top",
-                        transform: "translateX(-50%)",
-                    }}
-                />
+    const handleMainRegister = () => {
+        // Use constant link
+        window.open(FEST_DATA.mainRegistrationLink, "_blank"); 
+        closeJoinModal();
+    };
 
-                <div className="space-y-12">
-                    {timelineEvents.map((event, idx) => (
-                        <div
-                            key={idx}
-                            className={`relative flex items-center gap-8 ${idx % 2 === 0 ? "md:flex-row-reverse" : "md:flex-row"}`}
-                        >
-                            <motion.div
-                                className="flex-1 ml-12 md:ml-0"
-                                initial={{
-                                    opacity: 0,
-                                    x: idx % 2 === 0 ? 100 : -100,
-                                }}
-                                whileInView={{ opacity: 1, x: 0 }}
-                                viewport={{ once: false }}
-                                transition={{
-                                    delay: idx * 0.15,
-                                    duration: 0.6,
-                                    ease: "easeOut",
-                                }}
-                            >
-                                <div
-                                    className={`p-6 glass-panel rounded-xl border border-white/5 hover:border-neon-cyan/50 transition-colors ${idx % 2 === 0 ? "md:text-left" : "md:text-right"}`}
-                                >
-                                    <h3 className="text-xl font-bold font-orbitron text-white mb-1">
-                                        {event.title}
-                                    </h3>
-                                    <div
-                                        className={`flex items-center gap-2 text-neon-pink mb-2 ${idx % 2 === 0 ? "md:justify-start" : "md:justify-end"}`}
-                                    >
-                                        <Clock size={14} />
-                                        <span className="font-mono text-sm">
-                                            {event.time}
-                                        </span>
-                                    </div>
-                                    <p className="text-gray-400 text-sm flex items-center gap-2 justify-start md:justify-[inherit]">
-                                        {idx % 2 !== 0 && (
-                                            <span className="hidden md:inline">
-                                                {event.desc}
-                                            </span>
-                                        )}
-                                        <MapPin
-                                            size={14}
-                                            className="text-gray-500"
-                                        />
-                                        <span className="md:hidden">
-                                            {event.desc}
-                                        </span>
-                                        {idx % 2 === 0 && (
-                                            <span className="hidden md:inline">
-                                                {event.desc}
-                                            </span>
-                                        )}
-                                    </p>
-                                </div>
-                            </motion.div>
-
-                            <motion.div
-                                className="absolute left-4 md:left-1/2 transform -translate-x-1/2 w-4 h-4 bg-black border-2 border-neon-cyan rounded-full shadow-[0_0_10px_#00f6ff] z-10"
-                                initial={{ scale: 0, opacity: 0 }}
-                                whileInView={{ scale: 1, opacity: 1 }}
-                                viewport={{ once: false }}
-                                transition={{
-                                    delay: idx * 0.15 + 0.3,
-                                    duration: 0.5,
-                                    ease: "backOut",
-                                }}
-                                whileHover={{
-                                    scale: 1.3,
-                                    boxShadow: "0 0 20px #00f6ff",
-                                }}
-                            />
-
-                            <div className="hidden md:block flex-1"></div>
-                        </div>
-                    ))}
-                </div>
-            </div>
-        );
-    }
+    const handleGameRegister = () => {
+        // Use specific game link or fallback
+        if (selectedGame && selectedGame.formLink) {
+             window.open(selectedGame.formLink, "_blank");
+        } else {
+             window.open(FEST_DATA.mainRegistrationLink, "_blank");
+        }
+        closeJoinModal();
+    };
 
     return (
         <div className="min-h-screen relative">
             <style>{styles}</style>
             <div className="scanlines"></div>
             <CyberBackground />
+            
+            {/* Modal */}
+            <AnimatePresence>
+                {modalOpen && (
+                    <RegistrationModal 
+                        isOpen={modalOpen} 
+                        onClose={closeJoinModal} 
+                        game={selectedGame}
+                        onRegisterMain={handleMainRegister}
+                        onJoinGame={handleGameRegister}
+                    />
+                )}
+            </AnimatePresence>
 
             {/* --- NAVBAR --- */}
             <nav className="fixed top-0 left-0 w-full z-50 glass-panel border-b border-white/10">
@@ -661,18 +800,18 @@ const App = () => {
                             <Terminal className="text-neon-cyan w-8 h-8" />
                             <div className="flex flex-col">
                                 <span className="font-orbitron font-bold text-xl tracking-wider text-white">
-                                    TECH
-                                    <span className="text-neon-pink">NIX</span>
+                                    {FEST_DATA.name.slice(0, 4)}
+                                    <span className="text-neon-pink">{FEST_DATA.name.slice(4)}</span>
                                 </span>
                                 <span className="text-[10px] tracking-[0.2em] text-gray-400">
-                                    2026 EDITION
+                                    {FEST_DATA.year} EDITION
                                 </span>
                             </div>
                         </div>
 
                         {/* Desktop Nav */}
                         <div className="hidden md:flex items-center gap-8">
-                            {navLinks.map((link) => (
+                            {NAV_LINKS.map((link) => (
                                 <button
                                     key={link.id}
                                     onClick={() => scrollToSection(link.id)}
@@ -685,7 +824,7 @@ const App = () => {
                                 </button>
                             ))}
                             <button
-                                onClick={() => scrollToSection("games")}
+                                onClick={() => handleMainRegister()}
                                 className="px-6 py-2 bg-neon-cyan text-black font-bold font-orbitron clip-path-slant hover:bg-white transition-colors"
                             >
                                 REGISTER
@@ -707,7 +846,7 @@ const App = () => {
                     className={`md:hidden absolute top-20 left-0 w-full glass-panel border-b border-white/10 transition-all duration-300 overflow-hidden ${isMenuOpen ? "max-h-96" : "max-h-0"}`}
                 >
                     <div className="flex flex-col p-4 space-y-4">
-                        {navLinks.map((link) => (
+                        {NAV_LINKS.map((link) => (
                             <button
                                 key={link.id}
                                 onClick={() => scrollToSection(link.id)}
@@ -728,17 +867,17 @@ const App = () => {
                 <div className="container mx-auto px-4 text-center z-10">
                     <div className="inline-block px-4 py-1 border border-neon-cyan/30 rounded-full bg-neon-cyan/10 mb-6 backdrop-blur-sm animate-pulse">
                         <span className="text-neon-cyan text-sm font-bold tracking-widest uppercase">
-                            Vishwakarma Government Engineering College Presents
+                            {FEST_DATA.organizer} Presents
                         </span>
                     </div>
 
                     <h1
                         className="text-5xl md:text-8xl font-black font-orbitron mb-4 tracking-tight glitch-text"
-                        data-text={`${FEST_NAME} 2026`}
+                        data-text={`${FEST_DATA.name} ${FEST_DATA.year}`}
                     >
-                        {FEST_NAME}{" "}
+                        {FEST_DATA.name}{" "}
                         <span className="text-transparent bg-clip-text bg-gradient-to-r from-neon-pink">
-                            2026
+                            {FEST_DATA.year}
                         </span>
                     </h1>
 
@@ -756,18 +895,18 @@ const App = () => {
                     <div className="flex flex-wrap justify-center gap-4 text-sm md:text-base text-gray-400 mb-10">
                         <div className="flex items-center gap-2">
                             <Calendar className="text-neon-pink" size={18} />
-                            <span>Frebruary 6, 2026</span>
+                            <span>{FEST_DATA.displayDate}</span>
                         </div>
                         <div className="w-px h-5 bg-gray-700 hidden md:block"></div>
                         <div className="flex items-center gap-2">
                             <MapPin className="text-neon-cyan" size={18} />
-                            <span>VGEC Campus</span>
+                            <span>{FEST_DATA.location}</span>
                         </div>
                     </div>
 
                     <div className="flex flex-col md:flex-row gap-4 justify-center items-center mb-16">
                         <button
-                            onClick={() => scrollToSection("games")}
+                            onClick={() => handleMainRegister()}
                             className="px-8 py-4 bg-neon-cyan text-black font-orbitron font-bold text-lg clip-path-slant hover:bg-white hover:scale-105 transition-all duration-300 shadow-[0_0_20px_rgba(0,246,255,0.4)]"
                         >
                             REGISTER NOW
@@ -791,28 +930,7 @@ const App = () => {
             <div className="border-y border-white/10 bg-black/50 backdrop-blur-md">
                 <div className="container mx-auto px-4 py-8">
                     <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
-                        {[
-                            {
-                                label: "Epic Games",
-                                value: "4",
-                                color: "text-neon-cyan",
-                            },
-                            {
-                                label: "Prize Pool",
-                                value: "₹10k",
-                                color: "text-neon-pink",
-                            },
-                            {
-                                label: "Participants",
-                                value: "250+",
-                                color: "text-neon-yellow",
-                            },
-                            {
-                                label: "Day Fest",
-                                value: "1",
-                                color: "text-white",
-                            },
-                        ].map((stat, idx) => (
+                        {STATS.map((stat, idx) => (
                             <div
                                 key={idx}
                                 className="flex flex-col items-center group cursor-default"
@@ -832,7 +950,7 @@ const App = () => {
             </div>
 
             {/* --- ABOUT SECTION --- */}
-            <section id="about" className="py-20 relative">
+            <section id="about" className="py-28 relative">
                 <div className="container mx-auto px-4">
                     <div className="flex flex-col md:flex-row items-center gap-12">
                         <div className="md:w-1/2">
@@ -875,7 +993,7 @@ const App = () => {
                             </h2>
                             <div className="w-20 h-1 bg-neon-yellow"></div>
                             <p className="text-gray-300 leading-relaxed text-lg">
-                                {FEST_NAME} 2026 is not just a tech fest; it’s a
+                                {FEST_DATA.name} {FEST_DATA.year} is not just a tech fest; it’s a
                                 platform to explore ideas beyond the syllabus.
                                 Join the brightest minds from our campus for
                                 days filled with creativity, collaboration, and
@@ -929,18 +1047,17 @@ const App = () => {
                     </div>
 
                     <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-                        {games.map((game) => (
+                        {GAMES.map((game) => (
                             <GameCard
                                 key={game.id}
                                 game={game}
-                                onRegister={handleRegister}
+                                onJoin={openJoinModal}
                             />
                         ))}
                     </div>
                 </div>
             </section>
 
-            {/* --- TIMELINE SECTION --- */}
             {/* --- TIMELINE SECTION --- */}
             <section id="timeline" className="py-20 relative">
                 <div className="container mx-auto px-4">
@@ -957,6 +1074,7 @@ const App = () => {
                     <TimelineContent />
                 </div>
             </section>
+
             {/* --- CTA / REGISTER SECTION --- */}
             <section className="py-20 relative overflow-hidden">
                 <div className="absolute inset-0 bg-gradient-to-r from-neon-pink/10 to-neon-cyan/10"></div>
@@ -972,7 +1090,7 @@ const App = () => {
                         </p>
                         <div className="flex flex-col sm:flex-row justify-center gap-4">
                             <button
-                                onClick={() => handleRegister("general")}
+                                onClick={() => handleMainRegister()}
                                 className="px-8 py-4 bg-neon-cyan text-black font-orbitron font-bold text-lg clip-path-slant hover:scale-105 transition-transform"
                             >
                                 REGISTER NOW
@@ -996,27 +1114,14 @@ const App = () => {
                             <div className="flex items-center gap-2 mb-4">
                                 <Terminal className="text-neon-cyan" />
                                 <span className="font-orbitron font-bold text-2xl">
-                                    {FEST_NAME}
+                                    {FEST_DATA.name}
                                 </span>
                             </div>
                             <p className="text-gray-400 mb-6 max-w-sm">
                                 The ultimate convergence of technology,
                                 innovation, and competition. Hosted by
-                                Vishwakarma Government Engineering college.
+                                {FEST_DATA.organizer}.
                             </p>
-                            {/* <div className="flex gap-4">
-                                {[Instagram, Twitter, Linkedin, Mail].map(
-                                    (Icon, i) => (
-                                        <a
-                                            key={i}
-                                            href="#"
-                                            className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center hover:bg-neon-cyan hover:text-black transition-colors"
-                                        >
-                                            <Icon size={18} />
-                                        </a>
-                                    ),
-                                )}
-                            </div> */}
                         </div>
 
                         <div>
@@ -1024,18 +1129,16 @@ const App = () => {
                                 Quick Links
                             </h4>
                             <ul className="space-y-3 text-gray-400">
-                                {["home", "about", "games", "timeline"].map(
-                                    (item) => (
-                                        <li key={item}>
-                                            <a
-                                                href={`#${item}`}
-                                                className="hover:text-neon-cyan transition-colors"
-                                            >
-                                                {item.toUpperCase()}
-                                            </a>
-                                        </li>
-                                    ),
-                                )}
+                                {NAV_LINKS.map((link) => (
+                                    <li key={link.id}>
+                                        <a
+                                            href={`#${link.id}`}
+                                            className="hover:text-neon-cyan transition-colors"
+                                        >
+                                            {link.label.toUpperCase()}
+                                        </a>
+                                    </li>
+                                ))}
                             </ul>
                         </div>
 
@@ -1050,10 +1153,9 @@ const App = () => {
                                         className="text-neon-pink mt-1"
                                     />
                                     <span>
-                                        Vishwakarma Government Engineering
-                                        College,
-                                        <br />
-                                        Main Campus
+                                        {CONTACT_INFO.address.map((line, i) => (
+                                            <span key={i}>{line}<br/></span>
+                                        ))}
                                     </span>
                                 </li>
                                 <li className="flex items-start gap-3">
@@ -1062,17 +1164,14 @@ const App = () => {
                                         className="text-neon-pink mt-1"
                                     />
                                     <span>
-                                        <span>
-                                            <a href="tel:8799628088" className="border-b border-b-transparent hover:border-b-pink-500 ">
-                                                8799628088
-                                            </a>
-                                        </span>
-                                        <br />
-                                        <span>
-                                            <a href="tel:9173402267" className="border-b border-b-transparent hover:border-b-pink-500 ">
-                                                9173402267
-                                            </a>
-                                        </span>
+                                        {CONTACT_INFO.phones.map((phone, i) => (
+                                            <span key={i}>
+                                                <a href={`tel:${phone}`} className="border-b border-b-transparent hover:border-b-pink-500">
+                                                    {phone}
+                                                </a>
+                                                <br />
+                                            </span>
+                                        ))}
                                     </span>
                                 </li>
                                 <li className="flex items-center gap-3">
@@ -1084,9 +1183,9 @@ const App = () => {
                                         {" "}
                                         <a
                                             className="hover:border-b hover:border-b-pink-500"
-                                            href="mailto:vyasvraj47@gmail.com"
+                                            href={`mailto:${CONTACT_INFO.email}`}
                                         >
-                                            vyasvraj47@gmail.com
+                                            {CONTACT_INFO.email}
                                         </a>
                                     </span>
                                 </li>
@@ -1095,8 +1194,8 @@ const App = () => {
                     </div>
 
                     <div className="border-t border-white/10 pt-8 flex flex-col md:flex-row justify-between items-center text-sm text-gray-500">
-                        <p>&copy; 2026 {FEST_NAME}. All rights reserved.</p>
-                        <p>Designed With ❤️ From Fest Crew</p>
+                        <p>&copy; {FEST_DATA.year} {FEST_DATA.name}. All rights reserved.</p>
+                        <p>{CONTACT_INFO.copyright}</p>
                     </div>
                 </div>
             </footer>
