@@ -460,8 +460,8 @@ const App = () => {
             title: "AdZap",
             description:
                 "Pitch your wildest ideas! Creativity meets marketing in this high-energy branding battle.",
-            teamSize: "Team of 3-5",
-            prize: "₹12,000 Prize Pool",
+            teamSize: "Team of 2",
+            prize: "₹2,500 Prize Pool",
             icon: <Zap size={64} className="text-white" />,
             bgGradient: "bg-gradient-to-br from-purple-900 to-blue-900",
         },
@@ -472,7 +472,7 @@ const App = () => {
             description:
                 "Two minds, one code. Solve complex algorithms with your partner under extreme time pressure.",
             teamSize: "Team of 2",
-            prize: "₹15,000 Prize Pool",
+            prize: "₹2,500 Prize Pool",
             icon: <Code size={64} className="text-white" />,
             bgGradient: "bg-gradient-to-br from-green-900 to-teal-900",
         },
@@ -482,8 +482,8 @@ const App = () => {
             title: "Tech Quiz",
             description:
                 "Test your tech IQ. From silicon chips to neural networks, do you know it all?",
-            teamSize: "Solo or Duo",
-            prize: "₹8,000 Prize Pool",
+            teamSize: "Solo",
+            prize: "₹2,500 Prize Pool",
             icon: <Cpu size={64} className="text-white" />,
             bgGradient: "bg-gradient-to-br from-red-900 to-orange-900",
         },
@@ -494,7 +494,7 @@ const App = () => {
             description:
                 "Decide. Discover. Dominate. A campus-wide hunt solving crypto-style clues.",
             teamSize: "Team of 4",
-            prize: "₹15,000 Prize Pool",
+            prize: "₹2,500 Prize Pool",
             icon: <MapPin size={64} className="text-white" />,
             bgGradient: "bg-gradient-to-br from-blue-900 to-indigo-900",
         },
@@ -503,7 +503,7 @@ const App = () => {
     const timelineEvents = [
         {
             time: "11:00 AM",
-            title: "Opening Ceremony",
+            title: "AD Zapp",
             desc: "Main Auditorium",
             icon: <Target />,
         },
@@ -706,9 +706,6 @@ function TimelineContent() {
                         <span className="text-neon-cyan font-bold">
                             COMPETITION
                         </span>{" "}
-                        <span className="text-black/10 absolute -right-10">
-                            (CAGE)
-                        </span>
                     </p>
 
                     <div className="flex flex-wrap justify-center gap-4 text-sm md:text-base text-gray-400 mb-10">
@@ -954,13 +951,12 @@ function TimelineContent() {
                             <div className="flex items-center gap-2 mb-4">
                                 <Terminal className="text-neon-cyan" />
                                 <span className="font-orbitron font-bold text-2xl">
-                                    TECHVERSE
+                                    {FEST_NAME}
                                 </span>
                             </div>
                             <p className="text-gray-400 mb-6 max-w-sm">
                                 The ultimate convergence of technology,
-                                innovation, and competition. Hosted by XYZ
-                                Institute of Technology.
+                                innovation, and competition. Hosted by Vishwakarma Government Engineering college.
                             </p>
                             <div className="flex gap-4">
                                 {[Instagram, Twitter, Linkedin, Mail].map(
