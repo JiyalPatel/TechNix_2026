@@ -27,6 +27,7 @@ import {
 
 const FEST_NAME = "TECHNIX";
 
+
 /* --- CUSTOM STYLES & ANIMATIONS --- */
 const styles = `
   @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700;900&family=Rajdhani:wght@300;400;500;600;700&display=swap');
@@ -385,6 +386,10 @@ const CountdownTimer = () => {
 
 /* --- GAME CARD COMPONENT --- */
 const GameCard = ({ game, onRegister }) => {
+
+    
+const [showConfirmPopup, setShowConfirmPopup] = useState(false);
+
     return (
         <div className="group relative glass-panel rounded-xl overflow-hidden hover-glow transition-all duration-300 transform hover:-translate-y-2">
             {/* Image/Icon Header */}
@@ -419,10 +424,11 @@ const GameCard = ({ game, onRegister }) => {
                 </div>
 
                 <button
-                    onClick={() => onRegister(game.id)}
+                    // onClick={() => onRegister(game.id)}
+                    onClick={() => setShowConfirmPopup(true)}
                     className="w-full py-3 bg-transparent border border-neon-cyan text-neon-cyan font-bold uppercase tracking-wider hover:bg-neon-cyan hover:text-black transition-all duration-300 clip-path-slant flex items-center justify-center gap-2"
                 >
-                    Register Now <ChevronRight size={16} />
+                    Join <ChevronRight size={16} />
                 </button>
             </div>
 
