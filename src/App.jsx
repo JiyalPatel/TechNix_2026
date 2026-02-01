@@ -287,7 +287,7 @@ const styles = `
     background-size: 100% 4px;
     position: fixed;
     top: 0; right: 0; bottom: 0; left: 0;
-    z-index: 9999;
+    z-index: 100;
     pointer-events: none;
     opacity: 0.15;
   }
@@ -320,8 +320,15 @@ const CyberBackground = () => {
 
     useEffect(() => {
         const canvas = canvasRef.current;
-        if (!canvas) return;
+        if (!canvas) {
+            console.error('Canvas ref is null');
+            return;
+        }
         const ctx = canvas.getContext("2d");
+        if (!ctx) {
+            console.error('Could not get 2d context');
+            return;
+        }
 
         let w, h;
         let particles = [];
@@ -447,7 +454,15 @@ const CyberBackground = () => {
     return (
         <canvas
             ref={canvasRef}
-            className="fixed top-0 left-0 w-full h-full -z-10"
+            style={{
+                position: 'fixed',
+                top: 0,
+                left: 0,
+                width: '100%',
+                height: '100%',
+                zIndex: 0,
+                pointerEvents: 'none'
+            }}
         />
     );
 };
@@ -787,10 +802,11 @@ const App = () => {
     };
 
     return (
-        <div className="min-h-screen relative overflow-x-hidden w-full max-w-full">
+        <>
             <style>{styles}</style>
-            <div className="scanlines"></div>
             <CyberBackground />
+            <div className="scanlines"></div>
+            <div className="min-h-screen relative w-full" style={{ zIndex: 1 }}>
             
             {/* Modal */}
             <AnimatePresence>
@@ -1217,6 +1233,7 @@ const App = () => {
                 </div>
             </footer>
         </div>
+        </>
     );
 };
 
