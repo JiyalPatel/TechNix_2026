@@ -75,7 +75,7 @@ export const GAMES = [
     },
     {
         id: "coding",
-        title: "Colaborative Coding",
+        title: "Code Combat",
         img: "/ColaborativeCoding.png",
         description: "Two minds, one code. Solve complex algorithms with your partner under extreme time pressure.",
         teamSize: "Team of 2",
@@ -86,7 +86,7 @@ export const GAMES = [
     },
     {
         id: "quiz",
-        title: "Tech Quiz",
+        title: "IQ Arena",
         img: "/Quiz.png",
         description: "Test your tech IQ. From silicon chips to neural networks, do you know it all?",
         teamSize: "Solo",
@@ -97,7 +97,7 @@ export const GAMES = [
     },
     {
         id: "hunt",
-        title: "Treasure Hunt",
+        title: "The One Quest",
         img: "/TreasureHunt.png",
         description: "Decide. Discover. Dominate. A campus-wide hunt solving crypto-style clues.",
         teamSize: "Team of 4",
