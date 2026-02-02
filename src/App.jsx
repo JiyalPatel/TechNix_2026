@@ -56,7 +56,7 @@ export const NAV_LINKS = [
 
 export const STATS = [
     { label: "Epic Games", value: "4", color: "text-neon-cyan" },
-    { label: "Prize Pool", value: "₹10k", color: "text-neon-pink" },
+    { label: "Prize Pool", value: "₹6k+", color: "text-neon-pink" },
     { label: "Participants", value: "250+", color: "text-neon-yellow" },
     { label: "Day Fest", value: "1", color: "text-white" },
 ];
@@ -68,7 +68,7 @@ export const GAMES = [
         img: "/AdZapp.png",
         description: "Pitch your wildest ideas! Creativity meets marketing in this high-energy branding battle.",
         teamSize: "Team of 2",
-        prize: "₹2,500 Prize Pool",
+        prize: "₹1,500 Prize Pool",
         icon: <Zap size={64} className="text-white" />,
         bgGradient: "bg-gradient-to-br from-purple-900 to-blue-900",
         formLink: "https://docs.google.com/forms/d/e/1FAIpQLSeM05gW0Pm7o7hCHXzVyscsmjwdITTWPlVWafgtYKLJNQv7hw/viewform?usp=dialog" // Specific game reg link
@@ -79,7 +79,7 @@ export const GAMES = [
         img: "/ColaborativeCoding.png",
         description: "Two minds, one code. Solve complex algorithms with your partner under extreme time pressure.",
         teamSize: "Team of 2",
-        prize: "₹2,500 Prize Pool",
+        prize: "₹1,500 Prize Pool",
         icon: <Code size={64} className="text-white" />,
         bgGradient: "bg-gradient-to-br from-green-900 to-teal-900",
         formLink: "https://docs.google.com/forms/d/e/1FAIpQLSesoa6hELTsQRcVlrC_eyoBzq0Xc988lFJFAJz1fIRjz8XmyA/viewform?usp=dialog"
@@ -90,7 +90,7 @@ export const GAMES = [
         img: "/Quiz.png",
         description: "Test your tech IQ. From silicon chips to neural networks, do you know it all?",
         teamSize: "Solo",
-        prize: "₹2,500 Prize Pool",
+        prize: "₹1,500 Prize Pool",
         icon: <Cpu size={64} className="text-white" />,
         bgGradient: "bg-gradient-to-br from-red-900 to-orange-900",
         formLink: "https://docs.google.com/forms/d/e/1FAIpQLSd9e-dZvCUm3XIbqbV7E2UBlbLbQw56YXvpWQFe7PtWGsrSeA/viewform?usp=dialog"
@@ -101,7 +101,7 @@ export const GAMES = [
         img: "/TreasureHunt.png",
         description: "Decide. Discover. Dominate. A campus-wide hunt solving crypto-style clues.",
         teamSize: "Team of 4",
-        prize: "₹2,500 Prize Pool",
+        prize: "₹1,500 Prize Pool",
         icon: <MapPin size={64} className="text-white" />,
         bgGradient: "bg-gradient-to-br from-blue-900 to-indigo-900",
         formLink: "https://docs.google.com/forms/d/e/1FAIpQLSfZMbx8aYccYiIdHwRnLFKGo6K75Ow6tfMPQAz5DHD26m1A3A/viewform?usp=dialog"
@@ -712,7 +712,7 @@ function TimelineContent() {
                                         {event.time}
                                     </span>
                                 </div>
-                                <p className="text-gray-400 text-sm flex items-center gap-2 justify-start md:justify-[inherit]">
+                                <p className={`text-gray-400 text-sm flex items-center gap-2 ${idx % 2 === 0 ? "md:justify-start" : "md:justify-end"} md:justify-[inherit]`}>
                                     {idx % 2 !== 0 && (
                                         <span className="hidden md:inline">
                                             {event.desc}
@@ -800,6 +800,10 @@ const App = () => {
         }
         closeJoinModal();
     };
+
+    const handleDownloadBrochure = () => {
+        
+    }
 
     return (
         <>
@@ -1128,7 +1132,7 @@ const App = () => {
                             >
                                 REGISTER NOW
                             </button>
-                            <button className="px-8 py-4 bg-black border border-neon-pink text-neon-pink font-orbitron font-bold text-lg clip-path-slant hover:bg-neon-pink hover:text-black transition-all">
+                            <button onClick={() => handleDownloadBrochure()} className="px-8 py-4 bg-black border border-neon-pink text-neon-pink font-orbitron font-bold text-lg clip-path-slant hover:bg-neon-pink hover:text-black transition-all">
                                 DOWNLOAD BROCHURE
                             </button>
                         </div>
@@ -1152,7 +1156,7 @@ const App = () => {
                             </div>
                             <p className="text-gray-400 mb-6 max-w-sm">
                                 The ultimate convergence of technology,
-                                innovation, and competition. Hosted by
+                                innovation, and competition. Hosted by{" "}
                                 {FEST_DATA.organizer}.
                             </p>
                         </div>
