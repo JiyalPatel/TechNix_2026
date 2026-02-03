@@ -836,16 +836,16 @@ const MemeSection = () => {
                                 <div className="flex-shrink-0">
                                     <motion.div
                                         animate={{ 
-                                            rotate: [0, -5, 5, -5, 0],
+                                            rotate: [0, -10, 10, -10, 0],
                                         }}
                                         transition={{ 
                                             duration: 2,
                                             repeat: Infinity,
-                                            repeatDelay: 3
+                                            repeatDelay: 0.5
                                         }}
                                         className="w-16 h-16 md:w-20 md:h-20 rounded-xl bg-gradient-to-br from-neon-yellow to-neon-pink flex items-center justify-center"
                                     >
-                                        <span className="text-4xl md:text-5xl">😂</span>
+                                        <span className="text-4xl md:text-6xl">😂</span>
                                     </motion.div>
                                 </div>
 
