@@ -42,7 +42,8 @@ export const FEST_DATA = {
     displayDate: "February 6, 2026",
     location: "VGEC Campus",
     organizer: "Vishwakarma Government Engineering College",
-    mainRegistrationLink: "https://docs.google.com/forms/d/e/1FAIpQLSfxx_dx0KLlmjr3MiRTr9Ifr9tOtdOVMN7MX1DdzaPyThvKfg/viewform", // Main event reg link
+    mainRegistrationLink:
+        "https://docs.google.com/forms/d/e/1FAIpQLSfxx_dx0KLlmjr3MiRTr9Ifr9tOtdOVMN7MX1DdzaPyThvKfg/viewform", // Main event reg link
     brochureLink: "#", // Link to brochure PDF
 };
 
@@ -66,45 +67,53 @@ export const GAMES = [
         id: "adzap",
         title: "AdZap",
         img: "/AdZapp.png",
-        description: "Pitch your wildest ideas! Creativity meets marketing in this high-energy branding battle.",
+        description:
+            "Pitch your wildest ideas! Creativity meets marketing in this high-energy branding battle.",
         teamSize: "Team of 2",
         prize: "₹1,500 Prize Pool",
         icon: <Zap size={64} className="text-white" />,
         bgGradient: "bg-gradient-to-br from-purple-900 to-blue-900",
-        formLink: "https://docs.google.com/forms/d/e/1FAIpQLSeM05gW0Pm7o7hCHXzVyscsmjwdITTWPlVWafgtYKLJNQv7hw/viewform?usp=dialog" // Specific game reg link
+        formLink:
+            "https://docs.google.com/forms/d/e/1FAIpQLSeM05gW0Pm7o7hCHXzVyscsmjwdITTWPlVWafgtYKLJNQv7hw/viewform?usp=dialog", // Specific game reg link
     },
     {
         id: "coding",
         title: "Code Combat",
         img: "/ColaborativeCoding.png",
-        description: "Two minds, one code. Solve complex algorithms with your partner under extreme time pressure.",
+        description:
+            "Two minds, one code. Solve complex algorithms with your partner under extreme time pressure.",
         teamSize: "Team of 2",
         prize: "₹1,500 Prize Pool",
         icon: <Code size={64} className="text-white" />,
         bgGradient: "bg-gradient-to-br from-green-900 to-teal-900",
-        formLink: "https://docs.google.com/forms/d/e/1FAIpQLSesoa6hELTsQRcVlrC_eyoBzq0Xc988lFJFAJz1fIRjz8XmyA/viewform?usp=dialog"
+        formLink:
+            "https://docs.google.com/forms/d/e/1FAIpQLSesoa6hELTsQRcVlrC_eyoBzq0Xc988lFJFAJz1fIRjz8XmyA/viewform?usp=dialog",
     },
     {
         id: "quiz",
         title: "IQ Arena",
         img: "/Quiz.png",
-        description: "Test your tech IQ. From silicon chips to neural networks, do you know it all?",
+        description:
+            "Test your tech IQ. From silicon chips to neural networks, do you know it all?",
         teamSize: "Solo",
         prize: "₹1,500 Prize Pool",
         icon: <Cpu size={64} className="text-white" />,
         bgGradient: "bg-gradient-to-br from-red-900 to-orange-900",
-        formLink: "https://docs.google.com/forms/d/e/1FAIpQLSd9e-dZvCUm3XIbqbV7E2UBlbLbQw56YXvpWQFe7PtWGsrSeA/viewform?usp=dialog"
+        formLink:
+            "https://docs.google.com/forms/d/e/1FAIpQLSd9e-dZvCUm3XIbqbV7E2UBlbLbQw56YXvpWQFe7PtWGsrSeA/viewform?usp=dialog",
     },
     {
         id: "hunt",
         title: "The One Quest",
         img: "/TreasureHunt.png",
-        description: "Decide. Discover. Dominate. A campus-wide hunt solving crypto-style clues.",
+        description:
+            "Decide. Discover. Dominate. A campus-wide hunt solving crypto-style clues.",
         teamSize: "Team of 4",
         prize: "₹1,500 Prize Pool",
         icon: <MapPin size={64} className="text-white" />,
         bgGradient: "bg-gradient-to-br from-blue-900 to-indigo-900",
-        formLink: "https://docs.google.com/forms/d/e/1FAIpQLSfZMbx8aYccYiIdHwRnLFKGo6K75Ow6tfMPQAz5DHD26m1A3A/viewform?usp=dialog"
+        formLink:
+            "https://docs.google.com/forms/d/e/1FAIpQLSfZMbx8aYccYiIdHwRnLFKGo6K75Ow6tfMPQAz5DHD26m1A3A/viewform?usp=dialog",
     },
 ];
 
@@ -145,7 +154,7 @@ export const CONTACT_INFO = {
     address: ["Vishwakarma Government Engineering College,", "Main Campus"],
     phones: ["8799628088", "9173402267"],
     email: "vyasvraj47@gmail.com",
-    copyright: "Designed With ❤️ From Fest Crew"
+    copyright: "Designed With ❤️ From Fest Crew",
 };
 
 /* --- CUSTOM STYLES (styles.css equivalent) --- */
@@ -321,12 +330,12 @@ const CyberBackground = () => {
     useEffect(() => {
         const canvas = canvasRef.current;
         if (!canvas) {
-            console.error('Canvas ref is null');
+            console.error("Canvas ref is null");
             return;
         }
         const ctx = canvas.getContext("2d");
         if (!ctx) {
-            console.error('Could not get 2d context');
+            console.error("Could not get 2d context");
             return;
         }
 
@@ -355,7 +364,8 @@ const CyberBackground = () => {
                 this.speedY = (Math.random() - 0.5) * 0.5;
                 this.opacity = Math.random() * 0.5 + 0.1;
                 // Use theme colors
-                this.color = Math.random() > 0.5 ? THEME.colors.cyan : THEME.colors.pink;
+                this.color =
+                    Math.random() > 0.5 ? THEME.colors.cyan : THEME.colors.pink;
             }
 
             update() {
@@ -455,13 +465,13 @@ const CyberBackground = () => {
         <canvas
             ref={canvasRef}
             style={{
-                position: 'fixed',
+                position: "fixed",
                 top: 0,
                 left: 0,
-                width: '100%',
-                height: '100%',
+                width: "100%",
+                height: "100%",
                 zIndex: 0,
-                pointerEvents: 'none'
+                pointerEvents: "none",
             }}
         />
     );
@@ -544,20 +554,26 @@ const CountdownTimer = () => {
 };
 
 /* --- POPUP COMPONENT --- */
-const RegistrationModal = ({ isOpen, onClose, game, onRegisterMain, onJoinGame }) => {
+const RegistrationModal = ({
+    isOpen,
+    onClose,
+    game,
+    onRegisterMain,
+    onJoinGame,
+}) => {
     if (!isOpen) return null;
 
     return (
         <div className="fixed inset-0 z-[100] flex items-center justify-center px-4">
-            <motion.div 
+            <motion.div
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 exit={{ opacity: 0 }}
-                className="absolute inset-0 bg-black/80 backdrop-blur-sm" 
+                className="absolute inset-0 bg-black/80 backdrop-blur-sm"
                 onClick={onClose}
             ></motion.div>
-            
-            <motion.div 
+
+            <motion.div
                 initial={{ scale: 0.9, opacity: 0, y: 20 }}
                 animate={{ scale: 1, opacity: 1, y: 0 }}
                 exit={{ scale: 0.9, opacity: 0, y: 20 }}
@@ -568,9 +584,14 @@ const RegistrationModal = ({ isOpen, onClose, game, onRegisterMain, onJoinGame }
                 <div className="bg-white/5 p-4 flex justify-between items-center border-b border-white/10">
                     <div className="flex items-center gap-2">
                         <Terminal className="text-neon-cyan" size={20} />
-                        <h3 className="font-orbitron font-bold text-white tracking-wider text-sm md:text-base">SYSTEM ALERT</h3>
+                        <h3 className="font-orbitron font-bold text-white tracking-wider text-sm md:text-base">
+                            SYSTEM ALERT
+                        </h3>
                     </div>
-                    <button onClick={onClose} className="text-gray-400 hover:text-white transition-colors">
+                    <button
+                        onClick={onClose}
+                        className="text-gray-400 hover:text-white transition-colors"
+                    >
                         <X size={24} />
                     </button>
                 </div>
@@ -579,22 +600,35 @@ const RegistrationModal = ({ isOpen, onClose, game, onRegisterMain, onJoinGame }
                     <div className="w-16 h-16 bg-neon-cyan/10 rounded-full flex items-center justify-center mx-auto mb-6 border border-neon-cyan/30 shadow-[0_0_15px_rgba(0,246,255,0.2)]">
                         <AlertTriangle className="text-neon-cyan w-8 h-8" />
                     </div>
-                    
-                    <h2 className="text-2xl font-orbitron font-bold mb-3 uppercase tracking-wide">Registration Status</h2>
+
+                    <h2 className="text-2xl font-orbitron font-bold mb-3 uppercase tracking-wide">
+                        Registration Status
+                    </h2>
                     <p className="text-gray-300 mb-8 leading-relaxed">
-                        To participate in <span className="text-neon-pink font-bold">{game?.title}</span>, you must be a registered attendee of the main <span className="text-neon-yellow">{FEST_DATA.name}</span> event.
+                        To participate in{" "}
+                        <span className="text-neon-pink font-bold">
+                            {game?.title}
+                        </span>
+                        , you must be a registered attendee of the main{" "}
+                        <span className="text-neon-yellow">
+                            {FEST_DATA.name}
+                        </span>{" "}
+                        event.
                     </p>
 
                     <div className="space-y-4">
-                        <button 
+                        <button
                             onClick={onJoinGame}
                             className="w-full py-4 bg-neon-cyan/10 border border-neon-cyan text-neon-cyan hover:bg-neon-cyan hover:text-black font-bold font-orbitron tracking-wider clip-path-slant transition-all duration-300 flex items-center justify-center gap-2 group"
                         >
                             <span>YES, I HAVE REGISTERED</span>
-                            <ChevronRight size={18} className="group-hover:translate-x-1 transition-transform" />
+                            <ChevronRight
+                                size={18}
+                                className="group-hover:translate-x-1 transition-transform"
+                            />
                         </button>
-                        
-                        <button 
+
+                        <button
                             onClick={onRegisterMain}
                             className="w-full py-4 bg-transparent border border-white/20 text-gray-300 hover:border-neon-pink hover:text-neon-pink font-bold font-orbitron tracking-wider clip-path-slant transition-all duration-300"
                         >
@@ -620,7 +654,11 @@ const GameCard = ({ game, onJoin }) => {
             >
                 <div className="absolute inset-0 bg-black opacity-30"></div>
                 <div className="relative z-10 transform group-hover:scale-110 transition-transform duration-500 aspect-video flex justify-center items-center">
-                    <img src={`${game.img}`} alt={game.title} className="w-full h-full object-cover drop-shadow-2xl" />
+                    <img
+                        src={`${game.img}`}
+                        alt={game.title}
+                        className="w-full h-full object-cover drop-shadow-2xl"
+                    />
                 </div>
                 {/* Overlay shine effect */}
                 <div className="absolute inset-0 bg-gradient-to-tr from-transparent via-white to-transparent opacity-0 group-hover:opacity-10 w-full h-full transform -translate-x-full group-hover:translate-x-full transition-transform duration-1000"></div>
@@ -712,7 +750,9 @@ function TimelineContent() {
                                         {event.time}
                                     </span>
                                 </div>
-                                <p className={`text-gray-400 text-sm flex items-center gap-2 ${idx % 2 === 0 ? "md:justify-start" : "md:justify-end"} md:justify-[inherit]`}>
+                                <p
+                                    className={`text-gray-400 text-sm flex items-center gap-2 ${idx % 2 === 0 ? "md:justify-start" : "md:justify-end"} md:justify-[inherit]`}
+                                >
                                     {idx % 2 !== 0 && (
                                         <span className="hidden md:inline">
                                             {event.desc}
@@ -787,23 +827,19 @@ const App = () => {
 
     const handleMainRegister = () => {
         // Use constant link
-        window.open(FEST_DATA.mainRegistrationLink, "_blank"); 
+        window.open(FEST_DATA.mainRegistrationLink, "_blank");
         closeJoinModal();
     };
 
     const handleGameRegister = () => {
         // Use specific game link or fallback
         if (selectedGame && selectedGame.formLink) {
-             window.open(selectedGame.formLink, "_blank");
+            window.open(selectedGame.formLink, "_blank");
         } else {
-             window.open(FEST_DATA.mainRegistrationLink, "_blank");
+            window.open(FEST_DATA.mainRegistrationLink, "_blank");
         }
         closeJoinModal();
     };
-
-    const handleDownloadBrochure = () => {
-        
-    }
 
     return (
         <>
@@ -811,432 +847,462 @@ const App = () => {
             <CyberBackground />
             <div className="scanlines"></div>
             <div className="min-h-screen relative w-full" style={{ zIndex: 1 }}>
-            
-            {/* Modal */}
-            <AnimatePresence>
-                {modalOpen && (
-                    <RegistrationModal 
-                        isOpen={modalOpen} 
-                        onClose={closeJoinModal} 
-                        game={selectedGame}
-                        onRegisterMain={handleMainRegister}
-                        onJoinGame={handleGameRegister}
-                    />
-                )}
-            </AnimatePresence>
+                {/* Modal */}
+                <AnimatePresence>
+                    {modalOpen && (
+                        <RegistrationModal
+                            isOpen={modalOpen}
+                            onClose={closeJoinModal}
+                            game={selectedGame}
+                            onRegisterMain={handleMainRegister}
+                            onJoinGame={handleGameRegister}
+                        />
+                    )}
+                </AnimatePresence>
 
-            {/* --- NAVBAR --- */}
-            <nav className="fixed top-0 left-0 w-full z-50 glass-panel border-b border-white/10">
-                <div className="container mx-auto px-4 md:px-6">
-                    <div className="flex items-center justify-between h-20">
-                        {/* Logo */}
-                        <div
-                            className="flex items-center gap-2 cursor-pointer"
-                            onClick={() => scrollToSection("home")}
-                        >
-                            <Terminal className="text-neon-cyan w-8 h-8" />
-                            <div className="flex flex-col">
-                                <span className="font-orbitron font-bold text-xl tracking-wider text-white">
-                                    {FEST_DATA.name.slice(0, 4)}
-                                    <span className="text-neon-pink">{FEST_DATA.name.slice(4)}</span>
-                                </span>
-                                <span className="text-[10px] tracking-[0.2em] text-gray-400">
-                                    {FEST_DATA.year} EDITION
-                                </span>
+                {/* --- NAVBAR --- */}
+                <nav className="fixed top-0 left-0 w-full z-50 glass-panel border-b border-white/10">
+                    <div className="container mx-auto px-4 md:px-6">
+                        <div className="flex items-center justify-between h-20">
+                            {/* Logo */}
+                            <div
+                                className="flex items-center gap-2 cursor-pointer"
+                                onClick={() => scrollToSection("home")}
+                            >
+                                <Terminal className="text-neon-cyan w-8 h-8" />
+                                <div className="flex flex-col">
+                                    <span className="font-orbitron font-bold text-xl tracking-wider text-white">
+                                        {FEST_DATA.name.slice(0, 4)}
+                                        <span className="text-neon-pink">
+                                            {FEST_DATA.name.slice(4)}
+                                        </span>
+                                    </span>
+                                    <span className="text-[10px] tracking-[0.2em] text-gray-400">
+                                        {FEST_DATA.year} EDITION
+                                    </span>
+                                </div>
                             </div>
-                        </div>
 
-                        {/* Desktop Nav */}
-                        <div className="hidden md:flex items-center gap-8">
+                            {/* Desktop Nav */}
+                            <div className="hidden md:flex items-center gap-8">
+                                {NAV_LINKS.map((link) => (
+                                    <button
+                                        key={link.id}
+                                        onClick={() => scrollToSection(link.id)}
+                                        className={`font-orbitron text-sm tracking-wide transition-all duration-300 hover:text-neon-cyan relative group ${activeTab === link.id ? "text-neon-cyan" : "text-gray-300"}`}
+                                    >
+                                        {link.label}
+                                        <span
+                                            className={`absolute -bottom-1 left-0 h-[2px] bg-neon-cyan transition-all duration-300 ${activeTab === link.id ? "w-full" : "w-0 group-hover:w-full"}`}
+                                        ></span>
+                                    </button>
+                                ))}
+                                <button
+                                    onClick={() => handleMainRegister()}
+                                    className="px-6 py-2 bg-neon-cyan text-black font-bold font-orbitron clip-path-slant hover:bg-white transition-colors"
+                                >
+                                    REGISTER
+                                </button>
+                            </div>
+
+                            {/* Mobile Toggle */}
+                            <button
+                                className="md:hidden text-white"
+                                onClick={() => setIsMenuOpen(!isMenuOpen)}
+                            >
+                                {isMenuOpen ? (
+                                    <X size={28} />
+                                ) : (
+                                    <Menu size={28} />
+                                )}
+                            </button>
+                        </div>
+                    </div>
+
+                    {/* Mobile Menu */}
+                    <div
+                        className={`md:hidden absolute top-20 left-0 w-full glass-panel border-b border-white/10 transition-all duration-300 overflow-hidden ${isMenuOpen ? "max-h-96" : "max-h-0"}`}
+                    >
+                        <div className="flex flex-col p-4 space-y-4">
                             {NAV_LINKS.map((link) => (
                                 <button
                                     key={link.id}
                                     onClick={() => scrollToSection(link.id)}
-                                    className={`font-orbitron text-sm tracking-wide transition-all duration-300 hover:text-neon-cyan relative group ${activeTab === link.id ? "text-neon-cyan" : "text-gray-300"}`}
+                                    className="text-left py-2 px-4 hover:bg-white/5 text-gray-300 hover:text-neon-cyan font-orbitron transition-colors border-l-2 border-transparent hover:border-neon-cyan"
                                 >
                                     {link.label}
-                                    <span
-                                        className={`absolute -bottom-1 left-0 h-[2px] bg-neon-cyan transition-all duration-300 ${activeTab === link.id ? "w-full" : "w-0 group-hover:w-full"}`}
-                                    ></span>
                                 </button>
                             ))}
-                            <button
-                                onClick={() => handleMainRegister()}
-                                className="px-6 py-2 bg-neon-cyan text-black font-bold font-orbitron clip-path-slant hover:bg-white transition-colors"
-                            >
-                                REGISTER
-                            </button>
                         </div>
-
-                        {/* Mobile Toggle */}
-                        <button
-                            className="md:hidden text-white"
-                            onClick={() => setIsMenuOpen(!isMenuOpen)}
-                        >
-                            {isMenuOpen ? <X size={28} /> : <Menu size={28} />}
-                        </button>
                     </div>
-                </div>
+                </nav>
 
-                {/* Mobile Menu */}
-                <div
-                    className={`md:hidden absolute top-20 left-0 w-full glass-panel border-b border-white/10 transition-all duration-300 overflow-hidden ${isMenuOpen ? "max-h-96" : "max-h-0"}`}
+                {/* --- HERO SECTION --- */}
+                <section
+                    id="home"
+                    className="relative min-h-screen flex items-center pt-20 overflow-hidden"
                 >
-                    <div className="flex flex-col p-4 space-y-4">
-                        {NAV_LINKS.map((link) => (
-                            <button
-                                key={link.id}
-                                onClick={() => scrollToSection(link.id)}
-                                className="text-left py-2 px-4 hover:bg-white/5 text-gray-300 hover:text-neon-cyan font-orbitron transition-colors border-l-2 border-transparent hover:border-neon-cyan"
-                            >
-                                {link.label}
-                            </button>
-                        ))}
-                    </div>
-                </div>
-            </nav>
-
-            {/* --- HERO SECTION --- */}
-            <section
-                id="home"
-                className="relative min-h-screen flex items-center pt-20 overflow-hidden"
-            >
-                <div className="container mx-auto px-4 text-center z-10">
-                    <div className="inline-block px-4 py-1 border border-neon-cyan/30 rounded-full bg-neon-cyan/10 mb-6 backdrop-blur-sm animate-pulse">
-                        <span className="text-neon-cyan text-sm font-bold tracking-widest uppercase">
-                            {FEST_DATA.organizer} Presents
-                        </span>
-                    </div>
-
-                    <h1
-                        className="text-5xl md:text-8xl font-black font-orbitron mb-4 tracking-tight glitch-text"
-                        data-text={`${FEST_DATA.name} ${FEST_DATA.year}`}
-                    >
-                        {FEST_DATA.name}{" "}
-                        <span className="text-transparent bg-clip-text bg-gradient-to-r from-neon-pink">
-                            {FEST_DATA.year}
-                        </span>
-                    </h1>
-
-                    <p className="text-xl md:text-2xl text-gray-300 mb-8 max-w-2xl mx-auto font-light tracking-wide relative">
-                        WHERE{" "}
-                        <span className="text-neon-yellow font-bold">
-                            INNOVATION
-                        </span>{" "}
-                        MEETS{" "}
-                        <span className="text-neon-cyan font-bold">
-                            COMPETITION
-                        </span>{" "}
-                    </p>
-
-                    <div className="flex flex-wrap justify-center gap-4 text-sm md:text-base text-gray-400 mb-10">
-                        <div className="flex items-center gap-2">
-                            <Calendar className="text-neon-pink" size={18} />
-                            <span>{FEST_DATA.displayDate}</span>
+                    <div className="container mx-auto px-4 text-center z-10">
+                        <div className="inline-block px-4 py-1 border border-neon-cyan/30 rounded-full bg-neon-cyan/10 mb-6 backdrop-blur-sm animate-pulse">
+                            <span className="text-neon-cyan text-sm font-bold tracking-widest uppercase">
+                                {FEST_DATA.organizer} Presents
+                            </span>
                         </div>
-                        <div className="w-px h-5 bg-gray-700 hidden md:block"></div>
-                        <div className="flex items-center gap-2">
-                            <MapPin className="text-neon-cyan" size={18} />
-                            <span>{FEST_DATA.location}</span>
-                        </div>
-                    </div>
 
-                    <div className="flex flex-col md:flex-row gap-4 justify-center items-center mb-16">
-                        <button
-                            onClick={() => handleMainRegister()}
-                            className="px-8 py-4 bg-neon-cyan text-black font-orbitron font-bold text-lg clip-path-slant hover:bg-white hover:scale-105 transition-all duration-300 shadow-[0_0_20px_rgba(0,246,255,0.4)]"
+                        <h1
+                            className="text-5xl md:text-8xl font-black font-orbitron mb-4 tracking-tight glitch-text"
+                            data-text={`${FEST_DATA.name} ${FEST_DATA.year}`}
                         >
-                            REGISTER NOW
-                        </button>
-                        <button
-                            onClick={() => scrollToSection("about")}
-                            className="px-8 py-4 bg-transparent border border-white/20 text-white font-orbitron font-bold text-lg clip-path-slant hover:bg-white/10 hover:border-neon-pink hover:text-neon-pink transition-all duration-300"
-                        >
-                            EXPLORE EVENT
-                        </button>
-                    </div>
+                            {FEST_DATA.name}{" "}
+                            <span className="text-transparent bg-clip-text bg-gradient-to-r from-neon-pink">
+                                {FEST_DATA.year}
+                            </span>
+                        </h1>
 
-                    <CountdownTimer />
-                </div>
+                        <p className="text-xl md:text-2xl text-gray-300 mb-8 max-w-2xl mx-auto font-light tracking-wide relative">
+                            WHERE{" "}
+                            <span className="text-neon-yellow font-bold">
+                                INNOVATION
+                            </span>{" "}
+                            MEETS{" "}
+                            <span className="text-neon-cyan font-bold">
+                                COMPETITION
+                            </span>{" "}
+                        </p>
 
-                {/* Decorative Elements */}
-                <div className="absolute bottom-0 left-0 w-full h-32 bg-gradient-to-t from-black via-black/80 to-transparent pointer-events-none"></div>
-            </section>
-
-            {/* --- STATS STRIP --- */}
-            <div className="border-y border-white/10 bg-black/50 backdrop-blur-md">
-                <div className="container mx-auto px-4 py-8">
-                    <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
-                        {STATS.map((stat, idx) => (
-                            <div
-                                key={idx}
-                                className="flex flex-col items-center group cursor-default"
-                            >
-                                <span
-                                    className={`text-4xl md:text-5xl font-orbitron font-bold ${stat.color} group-hover:scale-110 transition-transform`}
-                                >
-                                    {stat.value}
-                                </span>
-                                <span className="text-xs md:text-sm text-gray-400 uppercase tracking-widest mt-2">
-                                    {stat.label}
-                                </span>
+                        <div className="flex flex-wrap justify-center gap-4 text-sm md:text-base text-gray-400 mb-10">
+                            <div className="flex items-center gap-2">
+                                <Calendar
+                                    className="text-neon-pink"
+                                    size={18}
+                                />
+                                <span>{FEST_DATA.displayDate}</span>
                             </div>
-                        ))}
-                    </div>
-                </div>
-            </div>
-
-            {/* --- ABOUT SECTION --- */}
-            <section id="about" className="py-28 relative">
-                <div className="container mx-auto px-4">
-                    <div className="flex flex-col md:flex-row items-center gap-12">
-                        <div className="md:w-1/2">
-                            <div className="relative rounded-lg overflow-hidden border border-white/20 group">
-                                <div className="absolute inset-0 bg-neon-cyan/20 group-hover:bg-transparent transition-colors z-10"></div>
-                                {/* Abstract tech visualization using CSS since we don't have images */}
-                                <div className="h-64 md:h-80 bg-slate-900 w-full relative overflow-hidden aspect-video flex justify-center items-center">
-                                    <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,_rgba(0,246,255,0.1),transparent_70%)]"></div>
-
-                                    <img
-                                        src="/TechnixMain.png"
-                                        className="w-full h-full object-cover"
-                                        alt=""
-                                    />
-
-                                    {/* Animated bars */}
-                                    <div className="absolute bottom-0 left-0 right-0 flex justify-center gap-2 h-full items-end p-8">
-                                        {[40, 70, 30, 80, 50, 90, 60].map(
-                                            (h, i) => (
-                                                <div
-                                                    key={i}
-                                                    style={{ height: `${h}%` }}
-                                                    className="w-4 bg-neon-cyan/50 animate-pulse delay-[${i*100}ms]"
-                                                ></div>
-                                            ),
-                                        )}
-                                    </div>
-                                </div>
+                            <div className="w-px h-5 bg-gray-700 hidden md:block"></div>
+                            <div className="flex items-center gap-2">
+                                <MapPin className="text-neon-cyan" size={18} />
+                                <span>{FEST_DATA.location}</span>
                             </div>
                         </div>
 
-                        <div className="md:w-1/2 space-y-6">
-                            <h2 className="text-3xl md:text-4xl font-orbitron font-bold">
-                                <span className="text-neon-pink">
-                                    WHERE LIMITS END,
-                                </span>{" "}
-                                <span className="animate-flicker text-white">
-                                    IDEAS BEGIN.
-                                </span>
-                            </h2>
-                            <div className="w-20 h-1 bg-neon-yellow"></div>
-                            <p className="text-gray-300 leading-relaxed text-lg">
-                                {FEST_DATA.name} {FEST_DATA.year} is not just a tech fest; it’s a
-                                platform to explore ideas beyond the syllabus.
-                                Join the brightest minds from our campus for
-                                days filled with creativity, collaboration, and
-                                skill-based challenges designed to test how you
-                                think and work as a team.
-                            </p>
-                            <p className="text-gray-400 leading-relaxed">
-                                Whether you’re a marketer, a coder, or a
-                                problem-solver, there’s a place for you in the
-                                verse. Pitch ideas, code together, crack
-                                interview-style quizzes, and solve clues to
-                                unlock the final prize—while pushing your limits
-                                and learning along the way.
-                            </p>
-
-                            <div className="grid grid-cols-2 gap-4 pt-4">
-                                <div className="flex items-center gap-3">
-                                    <div className="p-2 bg-neon-cyan/10 rounded text-neon-cyan">
-                                        <Sword size={24} />
-                                    </div>
-                                    <span className="font-bold">
-                                        Strategic Face-offs
-                                    </span>
-                                </div>
-                                <div className="flex items-center gap-3">
-                                    <div className="p-2 bg-neon-pink/10 rounded text-neon-pink">
-                                        <Cpu size={20} />
-                                    </div>
-                                    <span className="font-bold">
-                                        Collaborative Logic
-                                    </span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            {/* --- GAMES SECTION --- */}
-            <section id="games" className="py-20 relative bg-black/40">
-                <div className="container mx-auto px-4">
-                    <div className="text-center mb-16">
-                        <h2 className="text-4xl md:text-6xl font-orbitron font-bold mb-4">
-                            CHOOSE YOUR{" "}
-                            <span className="text-neon-cyan">ARENA</span>
-                        </h2>
-                        <p className="text-gray-400 max-w-2xl mx-auto">
-                            Four battlegrounds. Limitless possibilities. Select
-                            your game and prove your worth.
-                        </p>
-                    </div>
-
-                    <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-                        {GAMES.map((game) => (
-                            <GameCard
-                                key={game.id}
-                                game={game}
-                                onJoin={openJoinModal}
-                            />
-                        ))}
-                    </div>
-                </div>
-            </section>
-
-            {/* --- TIMELINE SECTION --- */}
-            <section id="timeline" className="py-20 relative">
-                <div className="container mx-auto px-4">
-                    <motion.h2
-                        initial={{ opacity: 0, y: -20 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true }}
-                        transition={{ duration: 0.6 }}
-                        className="text-3xl md:text-5xl font-orbitron font-bold text-center mb-16"
-                    >
-                        EVENT <span className="text-neon-yellow">TIMELINE</span>
-                    </motion.h2>
-
-                    <TimelineContent />
-                </div>
-            </section>
-
-            {/* --- CTA / REGISTER SECTION --- */}
-            <section className="py-20 relative overflow-hidden">
-                <div className="absolute inset-0 bg-gradient-to-r from-neon-pink/10 to-neon-cyan/10"></div>
-                <div className="container mx-auto px-4 relative z-10 text-center">
-                    <div className="glass-panel max-w-4xl mx-auto p-12 rounded-2xl border border-white/10 neon-border">
-                        <h2 className="text-3xl md:text-5xl font-orbitron font-bold mb-6">
-                            READY TO{" "}
-                            <span className="text-neon-cyan">DOMINATE?</span>
-                        </h2>
-                        <p className="text-xl text-gray-300 mb-8 max-w-2xl mx-auto">
-                            Spots are filling up faster than light speed. Secure
-                            your place in the verse now.
-                        </p>
-                        <div className="flex flex-col sm:flex-row justify-center gap-4">
+                        <div className="flex flex-col md:flex-row gap-4 justify-center items-center mb-16">
                             <button
                                 onClick={() => handleMainRegister()}
-                                className="px-8 py-4 bg-neon-cyan text-black font-orbitron font-bold text-lg clip-path-slant hover:scale-105 transition-transform"
+                                className="px-8 py-4 bg-neon-cyan text-black font-orbitron font-bold text-lg clip-path-slant hover:bg-white hover:scale-105 transition-all duration-300 shadow-[0_0_20px_rgba(0,246,255,0.4)]"
                             >
                                 REGISTER NOW
                             </button>
-                            <button onClick={() => handleDownloadBrochure()} className="px-8 py-4 bg-black border border-neon-pink text-neon-pink font-orbitron font-bold text-lg clip-path-slant hover:bg-neon-pink hover:text-black transition-all">
-                                DOWNLOAD BROCHURE
+                            <button
+                                onClick={() => scrollToSection("about")}
+                                className="px-8 py-4 bg-transparent border border-white/20 text-white font-orbitron font-bold text-lg clip-path-slant hover:bg-white/10 hover:border-neon-pink hover:text-neon-pink transition-all duration-300"
+                            >
+                                EXPLORE EVENT
                             </button>
+                        </div>
+
+                        <CountdownTimer />
+                    </div>
+
+                    {/* Decorative Elements */}
+                    <div className="absolute bottom-0 left-0 w-full h-32 bg-gradient-to-t from-black via-black/80 to-transparent pointer-events-none"></div>
+                </section>
+
+                {/* --- STATS STRIP --- */}
+                <div className="border-y border-white/10 bg-black/50 backdrop-blur-md">
+                    <div className="container mx-auto px-4 py-8">
+                        <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+                            {STATS.map((stat, idx) => (
+                                <div
+                                    key={idx}
+                                    className="flex flex-col items-center group cursor-default"
+                                >
+                                    <span
+                                        className={`text-4xl md:text-5xl font-orbitron font-bold ${stat.color} group-hover:scale-110 transition-transform`}
+                                    >
+                                        {stat.value}
+                                    </span>
+                                    <span className="text-xs md:text-sm text-gray-400 uppercase tracking-widest mt-2">
+                                        {stat.label}
+                                    </span>
+                                </div>
+                            ))}
                         </div>
                     </div>
                 </div>
-            </section>
 
-            {/* --- FOOTER --- */}
-            <footer
-                id="contact"
-                className="border-t border-white/10 bg-black pt-16 pb-8"
-            >
-                <div className="container mx-auto px-4">
-                    <div className="grid md:grid-cols-4 gap-12 mb-12">
-                        <div className="col-span-2">
-                            <div className="flex items-center gap-2 mb-4">
-                                <Terminal className="text-neon-cyan" />
-                                <span className="font-orbitron font-bold text-2xl">
-                                    {FEST_DATA.name}
-                                </span>
+                {/* --- ABOUT SECTION --- */}
+                <section id="about" className="py-28 relative">
+                    <div className="container mx-auto px-4">
+                        <div className="flex flex-col md:flex-row items-center gap-12">
+                            <div className="md:w-1/2">
+                                <div className="relative rounded-lg overflow-hidden border border-white/20 group">
+                                    <div className="absolute inset-0 bg-neon-cyan/20 group-hover:bg-transparent transition-colors z-10"></div>
+                                    {/* Abstract tech visualization using CSS since we don't have images */}
+                                    <div className="h-64 md:h-80 bg-slate-900 w-full relative overflow-hidden aspect-video flex justify-center items-center">
+                                        <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,_rgba(0,246,255,0.1),transparent_70%)]"></div>
+
+                                        <img
+                                            src="/TechnixMain.png"
+                                            className="w-full h-full object-cover"
+                                            alt=""
+                                        />
+
+                                        {/* Animated bars */}
+                                        <div className="absolute bottom-0 left-0 right-0 flex justify-center gap-2 h-full items-end p-8">
+                                            {[40, 70, 30, 80, 50, 90, 60].map(
+                                                (h, i) => (
+                                                    <div
+                                                        key={i}
+                                                        style={{
+                                                            height: `${h}%`,
+                                                        }}
+                                                        className="w-4 bg-neon-cyan/50 animate-pulse delay-[${i*100}ms]"
+                                                    ></div>
+                                                ),
+                                            )}
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
-                            <p className="text-gray-400 mb-6 max-w-sm">
-                                The ultimate convergence of technology,
-                                innovation, and competition. Hosted by{" "}
-                                {FEST_DATA.organizer}.
+
+                            <div className="md:w-1/2 space-y-6">
+                                <h2 className="text-3xl md:text-4xl font-orbitron font-bold">
+                                    <span className="text-neon-pink">
+                                        WHERE LIMITS END,
+                                    </span>{" "}
+                                    <span className="animate-flicker text-white">
+                                        IDEAS BEGIN.
+                                    </span>
+                                </h2>
+                                <div className="w-20 h-1 bg-neon-yellow"></div>
+                                <p className="text-gray-300 leading-relaxed text-lg">
+                                    {FEST_DATA.name} {FEST_DATA.year} is not
+                                    just a tech fest; it’s a platform to explore
+                                    ideas beyond the syllabus. Join the
+                                    brightest minds from our campus for days
+                                    filled with creativity, collaboration, and
+                                    skill-based challenges designed to test how
+                                    you think and work as a team.
+                                </p>
+                                <p className="text-gray-400 leading-relaxed">
+                                    Whether you’re a marketer, a coder, or a
+                                    problem-solver, there’s a place for you in
+                                    the verse. Pitch ideas, code together, crack
+                                    interview-style quizzes, and solve clues to
+                                    unlock the final prize—while pushing your
+                                    limits and learning along the way.
+                                </p>
+
+                                <div className="grid grid-cols-2 gap-4 pt-4">
+                                    <div className="flex items-center gap-3">
+                                        <div className="p-2 bg-neon-cyan/10 rounded text-neon-cyan">
+                                            <Sword size={24} />
+                                        </div>
+                                        <span className="font-bold">
+                                            Strategic Face-offs
+                                        </span>
+                                    </div>
+                                    <div className="flex items-center gap-3">
+                                        <div className="p-2 bg-neon-pink/10 rounded text-neon-pink">
+                                            <Cpu size={20} />
+                                        </div>
+                                        <span className="font-bold">
+                                            Collaborative Logic
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                {/* --- GAMES SECTION --- */}
+                <section id="games" className="py-20 relative bg-black/40">
+                    <div className="container mx-auto px-4">
+                        <div className="text-center mb-16">
+                            <h2 className="text-4xl md:text-6xl font-orbitron font-bold mb-4">
+                                CHOOSE YOUR{" "}
+                                <span className="text-neon-cyan">ARENA</span>
+                            </h2>
+                            <p className="text-gray-400 max-w-2xl mx-auto">
+                                Four battlegrounds. Limitless possibilities.
+                                Select your game and prove your worth.
                             </p>
                         </div>
 
-                        <div>
-                            <h4 className="font-orbitron font-bold text-lg mb-6 text-white">
-                                Quick Links
-                            </h4>
-                            <ul className="space-y-3 text-gray-400">
-                                {NAV_LINKS.map((link) => (
-                                    <li key={link.id}>
-                                        <a
-                                            href={`#${link.id}`}
-                                            className="hover:text-neon-cyan transition-colors"
-                                        >
-                                            {link.label.toUpperCase()}
-                                        </a>
+                        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+                            {GAMES.map((game) => (
+                                <GameCard
+                                    key={game.id}
+                                    game={game}
+                                    onJoin={openJoinModal}
+                                />
+                            ))}
+                        </div>
+                    </div>
+                </section>
+
+                {/* --- TIMELINE SECTION --- */}
+                <section id="timeline" className="py-20 relative">
+                    <div className="container mx-auto px-4">
+                        <motion.h2
+                            initial={{ opacity: 0, y: -20 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            viewport={{ once: true }}
+                            transition={{ duration: 0.6 }}
+                            className="text-3xl md:text-5xl font-orbitron font-bold text-center mb-16"
+                        >
+                            EVENT{" "}
+                            <span className="text-neon-yellow">TIMELINE</span>
+                        </motion.h2>
+
+                        <TimelineContent />
+                    </div>
+                </section>
+
+                {/* --- CTA / REGISTER SECTION --- */}
+                <section className="py-20 relative overflow-hidden">
+                    <div className="absolute inset-0 bg-gradient-to-r from-neon-pink/10 to-neon-cyan/10"></div>
+                    <div className="container mx-auto px-4 relative z-10 text-center">
+                        <div className="glass-panel max-w-4xl mx-auto p-12 rounded-2xl border border-white/10 neon-border">
+                            <h2 className="text-3xl md:text-5xl font-orbitron font-bold mb-6">
+                                READY TO{" "}
+                                <span className="text-neon-cyan">
+                                    DOMINATE?
+                                </span>
+                            </h2>
+                            <p className="text-xl text-gray-300 mb-8 max-w-2xl mx-auto">
+                                Spots are filling up faster than light speed.
+                                Secure your place in the verse now.
+                            </p>
+                            <div className="flex flex-col sm:flex-row justify-center gap-4">
+                                <button
+                                    onClick={() => handleMainRegister()}
+                                    className="px-8 py-4 bg-neon-cyan text-black font-orbitron font-bold text-lg clip-path-slant hover:scale-105 transition-transform"
+                                >
+                                    REGISTER NOW
+                                </button>
+                                {/* <a
+                                    href="/brochure.pdf"
+                                    className="px-8 py-4 bg-black border border-neon-pink text-neon-pink font-orbitron font-bold text-lg clip-path-slant hover:bg-neon-pink hover:text-black transition-all"
+                                >
+                                    DOWNLOAD BROCHURE
+                                </a> */}
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                {/* --- FOOTER --- */}
+                <footer
+                    id="contact"
+                    className="border-t border-white/10 bg-black pt-16 pb-8"
+                >
+                    <div className="container mx-auto px-4">
+                        <div className="grid md:grid-cols-4 gap-12 mb-12">
+                            <div className="col-span-2">
+                                <div className="flex items-center gap-2 mb-4">
+                                    <Terminal className="text-neon-cyan" />
+                                    <span className="font-orbitron font-bold text-2xl">
+                                        {FEST_DATA.name}
+                                    </span>
+                                </div>
+                                <p className="text-gray-400 mb-6 max-w-sm">
+                                    The ultimate convergence of technology,
+                                    innovation, and competition. Hosted by{" "}
+                                    {FEST_DATA.organizer}.
+                                </p>
+                            </div>
+
+                            <div>
+                                <h4 className="font-orbitron font-bold text-lg mb-6 text-white">
+                                    Quick Links
+                                </h4>
+                                <ul className="space-y-3 text-gray-400">
+                                    {NAV_LINKS.map((link) => (
+                                        <li key={link.id}>
+                                            <a
+                                                href={`#${link.id}`}
+                                                className="hover:text-neon-cyan transition-colors"
+                                            >
+                                                {link.label.toUpperCase()}
+                                            </a>
+                                        </li>
+                                    ))}
+                                </ul>
+                            </div>
+
+                            <div>
+                                <h4 className="font-orbitron font-bold text-lg mb-6 text-white">
+                                    Contact
+                                </h4>
+                                <ul className="space-y-3 text-gray-400">
+                                    <li className="flex items-start gap-3">
+                                        <MapPin
+                                            size={18}
+                                            className="text-neon-pink mt-1"
+                                        />
+                                        <span>
+                                            {CONTACT_INFO.address.map(
+                                                (line, i) => (
+                                                    <span key={i}>
+                                                        {line}
+                                                        <br />
+                                                    </span>
+                                                ),
+                                            )}
+                                        </span>
                                     </li>
-                                ))}
-                            </ul>
+                                    <li className="flex items-start gap-3">
+                                        <Phone
+                                            size={18}
+                                            className="text-neon-pink mt-1"
+                                        />
+                                        <span>
+                                            {CONTACT_INFO.phones.map(
+                                                (phone, i) => (
+                                                    <span key={i}>
+                                                        <a
+                                                            href={`tel:${phone}`}
+                                                            className="border-b border-b-transparent hover:border-b-pink-500"
+                                                        >
+                                                            {phone}
+                                                        </a>
+                                                        <br />
+                                                    </span>
+                                                ),
+                                            )}
+                                        </span>
+                                    </li>
+                                    <li className="flex items-center gap-3">
+                                        <Mail
+                                            size={18}
+                                            className="text-neon-pink"
+                                        />
+                                        <span>
+                                            {" "}
+                                            <a
+                                                className="hover:border-b hover:border-b-pink-500"
+                                                href={`mailto:${CONTACT_INFO.email}`}
+                                            >
+                                                {CONTACT_INFO.email}
+                                            </a>
+                                        </span>
+                                    </li>
+                                </ul>
+                            </div>
                         </div>
 
-                        <div>
-                            <h4 className="font-orbitron font-bold text-lg mb-6 text-white">
-                                Contact
-                            </h4>
-                            <ul className="space-y-3 text-gray-400">
-                                <li className="flex items-start gap-3">
-                                    <MapPin
-                                        size={18}
-                                        className="text-neon-pink mt-1"
-                                    />
-                                    <span>
-                                        {CONTACT_INFO.address.map((line, i) => (
-                                            <span key={i}>{line}<br/></span>
-                                        ))}
-                                    </span>
-                                </li>
-                                <li className="flex items-start gap-3">
-                                    <Phone
-                                        size={18}
-                                        className="text-neon-pink mt-1"
-                                    />
-                                    <span>
-                                        {CONTACT_INFO.phones.map((phone, i) => (
-                                            <span key={i}>
-                                                <a href={`tel:${phone}`} className="border-b border-b-transparent hover:border-b-pink-500">
-                                                    {phone}
-                                                </a>
-                                                <br />
-                                            </span>
-                                        ))}
-                                    </span>
-                                </li>
-                                <li className="flex items-center gap-3">
-                                    <Mail
-                                        size={18}
-                                        className="text-neon-pink"
-                                    />
-                                    <span>
-                                        {" "}
-                                        <a
-                                            className="hover:border-b hover:border-b-pink-500"
-                                            href={`mailto:${CONTACT_INFO.email}`}
-                                        >
-                                            {CONTACT_INFO.email}
-                                        </a>
-                                    </span>
-                                </li>
-                            </ul>
+                        <div className="border-t border-white/10 pt-8 flex flex-col md:flex-row justify-between items-center text-sm text-gray-500">
+                            <p>
+                                &copy; {FEST_DATA.year} {FEST_DATA.name}. All
+                                rights reserved.
+                            </p>
+                            <p>{CONTACT_INFO.copyright}</p>
                         </div>
                     </div>
-
-                    <div className="border-t border-white/10 pt-8 flex flex-col md:flex-row justify-between items-center text-sm text-gray-500">
-                        <p>&copy; {FEST_DATA.year} {FEST_DATA.name}. All rights reserved.</p>
-                        <p>{CONTACT_INFO.copyright}</p>
-                    </div>
-                </div>
-            </footer>
-        </div>
+                </footer>
+            </div>
         </>
     );
 };
