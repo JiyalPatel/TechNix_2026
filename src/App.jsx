@@ -110,14 +110,14 @@ export const GAMES = [
 
 export const TIMELINE_EVENTS = [
     {
-        time: "11:00 AM",
-        title: "AD Zapp",
+        time: "10:30 AM",
+        title: "AD Zap",
         desc: "Main Auditorium (A - Block)",
         icon: <Target />,
     },
     {
         time: "12:00 PM",
-        title: "Tech Quiz",
+        title: "IQ Arena",
         desc: "B-201",
         icon: <Code />,
     },
@@ -129,7 +129,7 @@ export const TIMELINE_EVENTS = [
     },
     {
         time: "02:00 PM",
-        title: "Treasure Hunt",
+        title: "The One Quest",
         desc: "A Block",
         icon: <Cpu />,
     },
