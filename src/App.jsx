@@ -122,7 +122,7 @@ export const GAMES = [
 export const MEME_EVENT = {
     title: "MEME-E-MEME",
     description: "Unleash your creativity and humor! Create the most viral memes about college life, hostel chaos, student struggles, and campus shenanigans. From late-night coding sessions to mess food disasters – capture it all in a meme that'll make everyone laugh!",
-    formLink: "#", // Placeholder - replace with actual Google Form link
+    formLink: "https://docs.google.com/forms/d/e/1FAIpQLSdhJd3EhMcPr_qLFYLYAMtLXqqikOcye9XpcDVIgar_wXAh9g/viewform", // Placeholder - replace with actual Google Form link
     tagline: "FREE ENTRY • NO REGISTRATION • JUST PURE CREATIVITY",
 };
 
