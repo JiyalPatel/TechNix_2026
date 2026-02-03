@@ -18,6 +18,8 @@ import {
     Phone,
     Mail,
     AlertTriangle,
+    Laugh,
+    Image as ImageIcon,
 } from "lucide-react";
 
 /* ==========================================================================
@@ -116,6 +118,13 @@ export const GAMES = [
             "https://docs.google.com/forms/d/e/1FAIpQLSfZMbx8aYccYiIdHwRnLFKGo6K75Ow6tfMPQAz5DHD26m1A3A/viewform?usp=dialog",
     },
 ];
+
+export const MEME_EVENT = {
+    title: "MEME-E-MEME",
+    description: "Unleash your creativity and humor! Create the most viral memes about college life, hostel chaos, student struggles, and campus shenanigans. From late-night coding sessions to mess food disasters – capture it all in a meme that'll make everyone laugh!",
+    formLink: "#", // Placeholder - replace with actual Google Form link
+    tagline: "FREE ENTRY • NO REGISTRATION • JUST PURE CREATIVITY",
+};
 
 export const TIMELINE_EVENTS = [
     {
@@ -798,6 +807,103 @@ function TimelineContent() {
     );
 }
 
+/* --- MEME SECTION COMPONENT --- */
+const MemeSection = () => {
+    const ref = React.useRef(null);
+    const isInView = useInView(ref, { once: true });
+
+    return (
+        <section id="meme" className="py-12 relative" ref={ref}>
+            <div className="container mx-auto px-4">
+                <motion.div
+                    initial={{ opacity: 0, y: 30 }}
+                    animate={isInView ? { opacity: 1, y: 0 } : {}}
+                    transition={{ duration: 0.6 }}
+                    className="max-w-6xl mx-auto"
+                >
+                    {/* Main Card */}
+                    <motion.div
+                        whileHover={{ scale: 1.01 }}
+                        transition={{ type: "spring", stiffness: 300 }}
+                        className="glass-panel rounded-xl border border-neon-pink/20 overflow-hidden relative group"
+                    >
+                        {/* Animated background gradient */}
+                        <div className="absolute inset-0 bg-gradient-to-r from-neon-yellow/5 via-neon-pink/5 to-neon-cyan/5 opacity-50"></div>
+
+                        <div className="relative z-10 p-6 md:p-8">
+                            <div className="flex flex-col md:flex-row items-center gap-6">
+                                {/* Icon Section */}
+                                <div className="flex-shrink-0">
+                                    <motion.div
+                                        animate={{ 
+                                            rotate: [0, -5, 5, -5, 0],
+                                        }}
+                                        transition={{ 
+                                            duration: 2,
+                                            repeat: Infinity,
+                                            repeatDelay: 3
+                                        }}
+                                        className="w-16 h-16 md:w-20 md:h-20 rounded-xl bg-gradient-to-br from-neon-yellow to-neon-pink flex items-center justify-center"
+                                    >
+                                        <span className="text-4xl md:text-5xl">😂</span>
+                                    </motion.div>
+                                </div>
+
+                                {/* Content Section */}
+                                <div className="flex-1 text-center md:text-left w-full">
+                                    <div className="mb-3">
+                                        <h3 className="text-2xl md:text-3xl font-orbitron font-bold text-white">
+                                            <span className="text-neon-yellow">MEME</span>-E-<span className="text-neon-pink">MEME</span>
+                                        </h3>
+                                    </div>
+                                    
+                                    <p className="text-gray-300 text-sm leading-relaxed mb-4">
+                                        {MEME_EVENT.description}
+                                    </p>
+
+                                    {/* Features */}
+                                    <div className="flex flex-wrap gap-2 justify-center md:justify-start">
+                                        <div className="flex items-center gap-1.5 bg-black/40 px-3 py-1.5 rounded-lg border border-white/10">
+                                            <Zap size={14} className="text-neon-cyan" />
+                                            <span className="text-xs text-gray-300">College Life</span>
+                                        </div>
+                                        <div className="flex items-center gap-1.5 bg-black/40 px-3 py-1.5 rounded-lg border border-white/10">
+                                            <Zap size={14} className="text-neon-pink" />
+                                            <span className="text-xs text-gray-300">Hostel Chaos</span>
+                                        </div>
+                                        <div className="flex items-center gap-1.5 bg-black/40 px-3 py-1.5 rounded-lg border border-white/10">
+                                            <Zap size={14} className="text-neon-yellow" />
+                                            <span className="text-xs text-gray-300">Student Struggles</span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                {/* Submit Button - Right side */}
+                                <div className="flex-shrink-0 w-full md:w-auto">
+                                    <a
+                                        href={MEME_EVENT.formLink}
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                    >
+                                        <motion.button
+                                            whileHover={{ scale: 1.05 }}
+                                            whileTap={{ scale: 0.95 }}
+                                            className="w-full md:w-auto px-6 py-3 bg-transparent border border-neon-cyan text-neon-cyan font-bold font-orbitron uppercase tracking-wider hover:bg-neon-cyan hover:text-black transition-all duration-300 clip-path-slant flex items-center justify-center gap-2"
+                                        >
+                                            Submit Here
+                                            <ChevronRight size={18} />
+                                        </motion.button>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </motion.div>
+                </motion.div>
+            </div>
+        </section>
+    );
+};
+
 /* --- MAIN APP COMPONENT --- */
 const App = () => {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -1116,6 +1222,9 @@ const App = () => {
                     </div>
                 </section>
 
+                {/* --- MEME-E-MEME SECTION --- */}
+                <MemeSection />
+
                 {/* --- GAMES SECTION --- */}
                 <section id="games" className="py-20 relative bg-black/40">
                     <div className="container mx-auto px-4">
@@ -1182,12 +1291,12 @@ const App = () => {
                                 >
                                     REGISTER NOW
                                 </button>
-                                {/* <a
+                                <a
                                     href="/brochure.pdf"
                                     className="px-8 py-4 bg-black border border-neon-pink text-neon-pink font-orbitron font-bold text-lg clip-path-slant hover:bg-neon-pink hover:text-black transition-all"
                                 >
                                     DOWNLOAD BROCHURE
-                                </a> */}
+                                </a>
                             </div>
                         </div>
                     </div>
