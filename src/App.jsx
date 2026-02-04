@@ -71,7 +71,7 @@ export const GAMES = [
         img: "/AdZapp.png",
         description:
             "Pitch your wildest ideas! Creativity meets marketing in this high-energy branding battle.",
-        teamSize: "Team of 2",
+        teamSize: "Team of 4",
         prize: "₹1,500 Prize Pool",
         icon: <Zap size={64} className="text-white" />,
         bgGradient: "bg-gradient-to-br from-purple-900 to-blue-900",
