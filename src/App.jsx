@@ -110,7 +110,7 @@ export const GAMES = [
         img: "/TreasureHunt.png",
         description:
             "Decide. Discover. Dominate. A campus-wide hunt solving crypto-style clues.",
-        teamSize: "Team of 4",
+        teamSize: "Team of 4 [Only First 24 Teams]",
         prize: "₹1,500 Prize Pool",
         icon: <MapPin size={64} className="text-white" />,
         bgGradient: "bg-gradient-to-br from-blue-900 to-indigo-900",
