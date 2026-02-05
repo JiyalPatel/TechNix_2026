@@ -863,7 +863,7 @@ const GameCard = ({ game, onJoin }) => {
 
                 <button
                     onClick={() => !isDisabled && onJoin(game)}
-                    disabled={isDisabled}
+                    disabled
                     className={`w-full py-3 border font-bold uppercase tracking-wider transition-all duration-300 clip-path-slant flex items-center justify-center gap-2 ${"bg-gray-800 border-gray-700 text-gray-600 cursor-not-allowed"}`}
                 >
                     {"Unavailable"} <ChevronRight size={16} />
