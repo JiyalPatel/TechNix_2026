@@ -363,14 +363,26 @@ const styles = `
 const WarningNavbar = ({ onClose, isVisible }) => {
     const [isScrolled, setIsScrolled] = useState(false);
     const [isPaused, setIsPaused] = useState(false);
+    const [isMobile, setIsMobile] = useState(false);
 
     useEffect(() => {
         const handleScroll = () => {
             setIsScrolled(window.scrollY > 100);
         };
 
+        const handleResize = () => {
+            setIsMobile(window.innerWidth < 768);
+        };
+
+        handleResize(); // run once on mount
+
         window.addEventListener("scroll", handleScroll);
-        return () => window.removeEventListener("scroll", handleScroll);
+        window.addEventListener("resize", handleResize);
+
+        return () => {
+            window.removeEventListener("scroll", handleScroll);
+            window.removeEventListener("resize", handleResize);
+        };
     }, []);
 
     if (!isVisible) return null;
@@ -411,11 +423,10 @@ const WarningNavbar = ({ onClose, isVisible }) => {
                         className="whitespace-nowrap inline-block font-bold tracking-wide text-white"
                         style={{
                             fontSize: isScrolled ? "0.75rem" : "0.875rem",
-                            animation: isPaused
-                                ? "none"
-                                : window.innerWidth < 768
-                                  ? "warning-scroll 12s linear infinite 0.5s"
-                                  : "none",
+                            animation:
+                                isMobile && !isPaused
+                                    ? "warning-scroll 12s linear infinite 0.3s"
+                                    : "none",
                         }}
                     >
                         {WARNING_CONFIG.text}
@@ -443,6 +454,7 @@ const WarningNavbar = ({ onClose, isVisible }) => {
         </motion.div>
     );
 };
+
 
 /* --- ANIMATED BACKGROUND COMPONENT --- */
 const CyberBackground = () => {
