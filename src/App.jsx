@@ -132,13 +132,13 @@ export const TIMELINE_EVENTS = [
     {
         time: "10:30 AM",
         title: "AD Zap",
-        desc: "B - 201",
+        desc: "B-201",
         icon: <Target />,
     },
     {
         time: "12:00 PM",
         title: "IQ Arena",
-        desc: "B-201",
+        desc: "B-202",
         icon: <Code />,
     },
     {
@@ -150,7 +150,7 @@ export const TIMELINE_EVENTS = [
     {
         time: "02:00 PM",
         title: "The One Quest",
-        desc: "A Block",
+        desc: "Virtual Start",
         icon: <Cpu />,
     },
     {
