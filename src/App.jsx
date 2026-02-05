@@ -1632,7 +1632,7 @@ const App = () => {
                                 &copy; {FEST_DATA.year} {FEST_DATA.name}. All
                                 rights reserved.
                             </p>
-                            <p className="text-white/15">"Pinned post holds your next clue."</p>
+                            <p className="text-white/10">"Pinned post holds your next clue."</p>
                             <p>{CONTACT_INFO.copyright}</p>
                         </div>
                     </div>
