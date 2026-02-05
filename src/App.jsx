@@ -169,7 +169,7 @@ export const CONTACT_INFO = {
 };
 
 export const WARNING_CONFIG = {
-    text: "🔔 IMPORTANT NOTICE: Registrations for The One Quest (Treasure Hunt) are now CLOSED. LAST 15 Minutes to Register...... Close at 1:15 PM",
+    text: "Registrations are Closed",
 };
 
 /* --- CUSTOM STYLES (styles.css equivalent) --- */
@@ -423,10 +423,7 @@ const WarningNavbar = ({ onClose, isVisible }) => {
                         className="whitespace-nowrap inline-block font-bold tracking-wide text-white"
                         style={{
                             fontSize: isScrolled ? "0.75rem" : "0.875rem",
-                            animation:
-                                isMobile && !isPaused
-                                    ? "warning-scroll 12s linear infinite 0.3s"
-                                    : "none",
+                            animation: isMobile && !isPaused ? "none" : "none",
                         }}
                     >
                         {WARNING_CONFIG.text}
@@ -454,7 +451,6 @@ const WarningNavbar = ({ onClose, isVisible }) => {
         </motion.div>
     );
 };
-
 
 /* --- ANIMATED BACKGROUND COMPONENT --- */
 const CyberBackground = () => {
@@ -1238,11 +1234,11 @@ const App = () => {
                                     </button>
                                 ))}
                                 <button
-                                    onClick={() => handleMainRegister()}
-                                    className="px-6 py-2 bg-neon-cyan text-black font-bold font-orbitron clip-path-slant hover:bg-white transition-colors"
-                                >
-                                    REGISTER
-                                </button>
+    disabled
+    className="px-8 py-4 bg-gray-800 text-gray-500 border border-gray-700 font-orbitron font-bold text-lg clip-path-slant cursor-not-allowed transition-all duration-300"
+>
+    REGISTRATIONS CLOSED
+</button>
                             </div>
 
                             {/* Mobile Toggle */}
@@ -1329,10 +1325,10 @@ const App = () => {
 
                         <div className="flex flex-col md:flex-row gap-4 justify-center items-center mb-16">
                             <button
-                                onClick={() => handleMainRegister()}
-                                className="px-8 py-4 bg-neon-cyan text-black font-orbitron font-bold text-lg clip-path-slant hover:bg-white hover:scale-105 transition-all duration-300 shadow-[0_0_20px_rgba(0,246,255,0.4)]"
+                                disabled
+                                className="px-8 py-4 bg-gray-800 text-gray-500 border border-gray-700 font-orbitron font-bold text-lg clip-path-slant cursor-not-allowed transition-all duration-300"
                             >
-                                REGISTER NOW
+                                REGISTRATIONS CLOSED
                             </button>
                             <button
                                 onClick={() => scrollToSection("about")}
@@ -1522,11 +1518,11 @@ const App = () => {
                             </p>
                             <div className="flex flex-col sm:flex-row justify-center gap-4">
                                 <button
-                                    onClick={() => handleMainRegister()}
-                                    className="px-8 py-4 bg-neon-cyan text-black font-orbitron font-bold text-lg clip-path-slant hover:scale-105 transition-transform"
-                                >
-                                    REGISTER NOW
-                                </button>
+    disabled
+    className="px-8 py-4 bg-gray-800 text-gray-500 border border-gray-700 font-orbitron font-bold text-lg clip-path-slant cursor-not-allowed transition-all duration-300"
+>
+    REGISTRATIONS CLOSED
+</button>
                                 <a
                                     href="/brochure.pdf"
                                     className="px-8 py-4 bg-black border border-neon-pink text-neon-pink font-orbitron font-bold text-lg clip-path-slant hover:bg-neon-pink hover:text-black transition-all"
