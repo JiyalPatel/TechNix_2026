@@ -779,11 +779,9 @@ const GameCard = ({ game, onJoin }) => {
 
     return (
         <div
-            className={`group relative glass-panel rounded-xl overflow-hidden transition-all duration-300 transform ${
-                isDisabled
-                    ? "opacity-50 cursor-not-allowed grayscale"
-                    : "hover-glow hover:-translate-y-2"
-            }`}
+            className={`group relative glass-panel rounded-xl overflow-hidden transition-all duration-300 transform opacity-50 cursor-not-allowed grayscale"
+               
+            `}
         >
             {/* Image/Icon Header */}
             <div
@@ -866,14 +864,9 @@ const GameCard = ({ game, onJoin }) => {
                 <button
                     onClick={() => !isDisabled && onJoin(game)}
                     disabled={isDisabled}
-                    className={`w-full py-3 border font-bold uppercase tracking-wider transition-all duration-300 clip-path-slant flex items-center justify-center gap-2 ${
-                        isDisabled
-                            ? "bg-gray-800 border-gray-700 text-gray-600 cursor-not-allowed"
-                            : "bg-transparent border-neon-cyan text-neon-cyan hover:bg-neon-cyan hover:text-black"
-                    }`}
+                    className={`w-full py-3 border font-bold uppercase tracking-wider transition-all duration-300 clip-path-slant flex items-center justify-center gap-2 ${"bg-gray-800 border-gray-700 text-gray-600 cursor-not-allowed"}`}
                 >
-                    {isDisabled ? "Unavailable" : "Join"}{" "}
-                    <ChevronRight size={16} />
+                    {"Unavailable"} <ChevronRight size={16} />
                 </button>
             </div>
 
@@ -1234,11 +1227,11 @@ const App = () => {
                                     </button>
                                 ))}
                                 <button
-    disabled
-    className="px-8 py-4 bg-gray-800 text-gray-500 border border-gray-700 font-orbitron font-bold text-lg clip-path-slant cursor-not-allowed transition-all duration-300"
->
-    REGISTRATIONS CLOSED
-</button>
+                                    disabled
+                                    className="px-8 py-4 bg-gray-800 text-gray-500 border border-gray-700 font-orbitron font-bold text-lg clip-path-slant cursor-not-allowed transition-all duration-300"
+                                >
+                                    REGISTRATIONS CLOSED
+                                </button>
                             </div>
 
                             {/* Mobile Toggle */}
@@ -1518,11 +1511,11 @@ const App = () => {
                             </p>
                             <div className="flex flex-col sm:flex-row justify-center gap-4">
                                 <button
-    disabled
-    className="px-8 py-4 bg-gray-800 text-gray-500 border border-gray-700 font-orbitron font-bold text-lg clip-path-slant cursor-not-allowed transition-all duration-300"
->
-    REGISTRATIONS CLOSED
-</button>
+                                    disabled
+                                    className="px-8 py-4 bg-gray-800 text-gray-500 border border-gray-700 font-orbitron font-bold text-lg clip-path-slant cursor-not-allowed transition-all duration-300"
+                                >
+                                    REGISTRATIONS CLOSED
+                                </button>
                                 <a
                                     href="/brochure.pdf"
                                     className="px-8 py-4 bg-black border border-neon-pink text-neon-pink font-orbitron font-bold text-lg clip-path-slant hover:bg-neon-pink hover:text-black transition-all"
