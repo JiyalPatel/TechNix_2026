@@ -121,8 +121,10 @@ export const GAMES = [
 
 export const MEME_EVENT = {
     title: "MEME-E-MEME",
-    description: "Unleash your creativity and humor! Create the most viral memes about college life, hostel chaos, student struggles, and campus shenanigans. From late-night coding sessions to mess food disasters – capture it all in a meme that'll make everyone laugh!",
-    formLink: "https://docs.google.com/forms/d/e/1FAIpQLSdhJd3EhMcPr_qLFYLYAMtLXqqikOcye9XpcDVIgar_wXAh9g/viewform", // Placeholder - replace with actual Google Form link
+    description:
+        "Unleash your creativity and humor! Create the most viral memes about college life, hostel chaos, student struggles, and campus shenanigans. From late-night coding sessions to mess food disasters – capture it all in a meme that'll make everyone laugh!",
+    formLink:
+        "https://docs.google.com/forms/d/e/1FAIpQLSdhJd3EhMcPr_qLFYLYAMtLXqqikOcye9XpcDVIgar_wXAh9g/viewform",
     tagline: "FREE ENTRY • NO REGISTRATION • JUST PURE CREATIVITY",
 };
 
@@ -130,7 +132,7 @@ export const TIMELINE_EVENTS = [
     {
         time: "10:30 AM",
         title: "AD Zap",
-        desc: "Main Auditorium (A - Block)",
+        desc: "B - 201",
         icon: <Target />,
     },
     {
@@ -164,6 +166,10 @@ export const CONTACT_INFO = {
     phones: ["8799628088", "9173402267"],
     email: "vyasvraj47@gmail.com",
     copyright: "Designed With ❤️ From Fest Crew",
+};
+
+export const WARNING_CONFIG = {
+    text: "🔔 IMPORTANT NOTICE: Registrations for The One Quest (Treasure Hunt) are now CLOSED. Slots are full!  Explore other exciting games at TechNix 2026 and join the fun! 🎮⚡",
 };
 
 /* --- CUSTOM STYLES (styles.css equivalent) --- */
@@ -325,12 +331,118 @@ const styles = `
     backdrop-filter: blur(12px);
     border: 1px solid rgba(255, 255, 255, 0.05);
   }
+
+  /* Warning Navbar Keyframes */
+  @keyframes warning-scroll {
+    0% {
+      transform: translateX(100%);
+    }
+    100% {
+      transform: translateX(-100%);
+    }
+  }
+
+  @keyframes warning-pulse {
+    0%, 100% {
+      transform: scale(1);
+      opacity: 1;
+    }
+    50% {
+      transform: scale(1.1);
+      opacity: 0.8;
+    }
+  }
 `;
 
 /* ==========================================================================
    --- COMPONENTS ---
    ==========================================================================
 */
+
+/* --- WARNING NAVBAR COMPONENT --- */
+const WarningNavbar = ({ onClose, isVisible }) => {
+    const [isScrolled, setIsScrolled] = useState(false);
+    const [isPaused, setIsPaused] = useState(false);
+
+    useEffect(() => {
+        const handleScroll = () => {
+            setIsScrolled(window.scrollY > 100);
+        };
+
+        window.addEventListener("scroll", handleScroll);
+        return () => window.removeEventListener("scroll", handleScroll);
+    }, []);
+
+    if (!isVisible) return null;
+
+    return (
+        <motion.div
+            initial={{ y: -100, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            exit={{ y: -100, opacity: 0 }}
+            transition={{ type: "spring", stiffness: 100, damping: 20 }}
+            className={`fixed top-0 left-0 w-full z-[60] overflow-hidden border-b transition-all duration-300 ${
+                isScrolled ? "py-2" : "py-3"
+            }`}
+            style={{
+                background: "linear-gradient(135deg, #ff006e 0%, #ffbe0b 100%)",
+                boxShadow: "0 2px 10px rgba(255, 107, 53, 0.3)",
+                borderBottom: "2px solid rgba(255, 255, 255, 0.2)",
+            }}
+        >
+            <div className="flex items-center justify-center gap-3 px-4">
+                <motion.div
+                    animate={{ scale: [1, 1.1, 1] }}
+                    transition={{ duration: 2, repeat: Infinity }}
+                    className="flex-shrink-0"
+                >
+                    <AlertTriangle
+                        size={isScrolled ? 16 : 20}
+                        className="text-white"
+                    />
+                </motion.div>
+
+                <div
+                    className="flex-1 overflow-hidden"
+                    onMouseEnter={() => setIsPaused(true)}
+                    onMouseLeave={() => setIsPaused(false)}
+                >
+                    <div
+                        className="whitespace-nowrap inline-block font-bold tracking-wide text-white"
+                        style={{
+                            fontSize: isScrolled ? "0.75rem" : "0.875rem",
+                            animation: isPaused
+                                ? "none"
+                                : window.innerWidth < 768
+                                  ? "warning-scroll 12s linear infinite 0.5s"
+                                  : "none",
+                        }}
+                    >
+                        {WARNING_CONFIG.text}
+                    </div>
+                </div>
+
+                <button
+                    onClick={onClose}
+                    className="flex-shrink-0 w-7 h-7 rounded-full flex items-center justify-center transition-all duration-300 hover:rotate-90"
+                    style={{
+                        background: "rgba(255, 255, 255, 0.2)",
+                    }}
+                    onMouseEnter={(e) => {
+                        e.currentTarget.style.background =
+                            "rgba(255, 255, 255, 0.3)";
+                    }}
+                    onMouseLeave={(e) => {
+                        e.currentTarget.style.background =
+                            "rgba(255, 255, 255, 0.2)";
+                    }}
+                >
+                    <X size={16} className="text-white" />
+                </button>
+            </div>
+        </motion.div>
+    );
+};
 
 /* --- ANIMATED BACKGROUND COMPONENT --- */
 const CyberBackground = () => {
@@ -655,14 +767,28 @@ const RegistrationModal = ({
 
 /* --- GAME CARD COMPONENT --- */
 const GameCard = ({ game, onJoin }) => {
+    const isDisabled = game.title === "The One Quest";
+
     return (
-        <div className="group relative glass-panel rounded-xl overflow-hidden hover-glow transition-all duration-300 transform hover:-translate-y-2">
+        <div
+            className={`group relative glass-panel rounded-xl overflow-hidden transition-all duration-300 transform ${
+                isDisabled
+                    ? "opacity-50 cursor-not-allowed grayscale"
+                    : "hover-glow hover:-translate-y-2"
+            }`}
+        >
             {/* Image/Icon Header */}
             <div
                 className={`h-40 ${game.bgGradient} flex items-center justify-center relative overflow-hidden`}
             >
-                <div className="absolute inset-0 bg-black opacity-30"></div>
-                <div className="relative z-10 transform group-hover:scale-110 transition-transform duration-500 aspect-video flex justify-center items-center">
+                <div
+                    className={`absolute inset-0 ${isDisabled ? "bg-black opacity-60" : "bg-black opacity-30"}`}
+                ></div>
+                <div
+                    className={`relative z-10 transform transition-transform duration-500 aspect-video flex justify-center items-center ${
+                        isDisabled ? "" : "group-hover:scale-110"
+                    }`}
+                >
                     <img
                         src={`${game.img}`}
                         alt={game.title}
@@ -670,38 +796,83 @@ const GameCard = ({ game, onJoin }) => {
                     />
                 </div>
                 {/* Overlay shine effect */}
-                <div className="absolute inset-0 bg-gradient-to-tr from-transparent via-white to-transparent opacity-0 group-hover:opacity-10 w-full h-full transform -translate-x-full group-hover:translate-x-full transition-transform duration-1000"></div>
+                {!isDisabled && (
+                    <div className="absolute inset-0 bg-gradient-to-tr from-transparent via-white to-transparent opacity-0 group-hover:opacity-10 w-full h-full transform -translate-x-full group-hover:translate-x-full transition-transform duration-1000"></div>
+                )}
+
+                {/* Disabled Badge */}
+                {isDisabled && (
+                    <div className="absolute top-4 right-4 bg-red-600/90 text-white px-3 py-1 rounded-full text-xs font-bold font-orbitron">
+                        SLOTS FULL
+                    </div>
+                )}
             </div>
 
             <div className="p-6 relative z-10">
-                <h3 className="text-2xl font-orbitron font-bold mb-2 group-hover:text-neon-cyan transition-colors">
+                <h3
+                    className={`text-2xl font-orbitron font-bold mb-2 transition-colors ${
+                        isDisabled
+                            ? "text-gray-500"
+                            : "group-hover:text-neon-cyan"
+                    }`}
+                >
                     {game.title}
                 </h3>
-                <p className="text-gray-300 text-sm mb-4 line-clamp-2 min-h-[2.5rem]">
+                <p
+                    className={`text-sm mb-4 line-clamp-2 min-h-[2.5rem] ${
+                        isDisabled ? "text-gray-500" : "text-gray-300"
+                    }`}
+                >
                     {game.description}
                 </p>
 
                 <div className="space-y-2 mb-6">
-                    <div className="flex items-center text-sm text-gray-400">
-                        <Users className="w-4 h-4 mr-2 text-neon-pink" />
+                    <div
+                        className={`flex items-center text-sm ${
+                            isDisabled ? "text-gray-600" : "text-gray-400"
+                        }`}
+                    >
+                        <Users
+                            className={`w-4 h-4 mr-2 ${
+                                isDisabled ? "text-gray-600" : "text-neon-pink"
+                            }`}
+                        />
                         <span>{game.teamSize}</span>
                     </div>
-                    <div className="flex items-center text-sm text-gray-400">
-                        <Trophy className="w-4 h-4 mr-2 text-neon-yellow" />
+                    <div
+                        className={`flex items-center text-sm ${
+                            isDisabled ? "text-gray-600" : "text-gray-400"
+                        }`}
+                    >
+                        <Trophy
+                            className={`w-4 h-4 mr-2 ${
+                                isDisabled
+                                    ? "text-gray-600"
+                                    : "text-neon-yellow"
+                            }`}
+                        />
                         <span>{game.prize}</span>
                     </div>
                 </div>
 
                 <button
-                    onClick={() => onJoin(game)}
-                    className="w-full py-3 bg-transparent border border-neon-cyan text-neon-cyan font-bold uppercase tracking-wider hover:bg-neon-cyan hover:text-black transition-all duration-300 clip-path-slant flex items-center justify-center gap-2"
+                    onClick={() => !isDisabled && onJoin(game)}
+                    disabled={isDisabled}
+                    className={`w-full py-3 border font-bold uppercase tracking-wider transition-all duration-300 clip-path-slant flex items-center justify-center gap-2 ${
+                        isDisabled
+                            ? "bg-gray-800 border-gray-700 text-gray-600 cursor-not-allowed"
+                            : "bg-transparent border-neon-cyan text-neon-cyan hover:bg-neon-cyan hover:text-black"
+                    }`}
                 >
-                    Join <ChevronRight size={16} />
+                    {isDisabled ? "Unavailable" : "Join"}{" "}
+                    <ChevronRight size={16} />
                 </button>
             </div>
 
             {/* Border Animation */}
-            <div className="absolute inset-0 border-2 border-transparent group-hover:border-neon-cyan/50 rounded-xl transition-colors pointer-events-none"></div>
+            {!isDisabled && (
+                <div className="absolute inset-0 border-2 border-transparent group-hover:border-neon-cyan/50 rounded-xl transition-colors pointer-events-none"></div>
+            )}
         </div>
     );
 };
@@ -835,17 +1006,19 @@ const MemeSection = () => {
                                 {/* Icon Section */}
                                 <div className="flex-shrink-0">
                                     <motion.div
-                                        animate={{ 
+                                        animate={{
                                             rotate: [0, -10, 10, -10, 0],
                                         }}
-                                        transition={{ 
+                                        transition={{
                                             duration: 2,
                                             repeat: Infinity,
-                                            repeatDelay: 0.5
+                                            repeatDelay: 0.5,
                                         }}
                                         className="w-16 h-16 md:w-20 md:h-20 rounded-xl bg-gradient-to-br from-neon-yellow to-neon-pink flex items-center justify-center"
                                     >
-                                        <span className="text-4xl md:text-6xl">😂</span>
+                                        <span className="text-4xl md:text-6xl">
+                                            😂
+                                        </span>
                                     </motion.div>
                                 </div>
 
@@ -853,10 +1026,16 @@ const MemeSection = () => {
                                 <div className="flex-1 text-center md:text-left w-full">
                                     <div className="mb-3">
                                         <h3 className="text-2xl md:text-3xl font-orbitron font-bold text-white">
-                                            <span className="text-neon-yellow">MEME</span>-E-<span className="text-neon-pink">MEME</span>
+                                            <span className="text-neon-yellow">
+                                                MEME
+                                            </span>
+                                            -E-
+                                            <span className="text-neon-pink">
+                                                MEME
+                                            </span>
                                         </h3>
                                     </div>
-                                    
+
                                     <p className="text-gray-300 text-sm leading-relaxed mb-4">
                                         {MEME_EVENT.description}
                                     </p>
@@ -864,16 +1043,31 @@ const MemeSection = () => {
                                     {/* Features */}
                                     <div className="flex flex-wrap gap-2 justify-center md:justify-start">
                                         <div className="flex items-center gap-1.5 bg-black/40 px-3 py-1.5 rounded-lg border border-white/10">
-                                            <Zap size={14} className="text-neon-cyan" />
-                                            <span className="text-xs text-gray-300">College Life</span>
+                                            <Zap
+                                                size={14}
+                                                className="text-neon-cyan"
+                                            />
+                                            <span className="text-xs text-gray-300">
+                                                College Life
+                                            </span>
                                         </div>
                                         <div className="flex items-center gap-1.5 bg-black/40 px-3 py-1.5 rounded-lg border border-white/10">
-                                            <Zap size={14} className="text-neon-pink" />
-                                            <span className="text-xs text-gray-300">Hostel Chaos</span>
+                                            <Zap
+                                                size={14}
+                                                className="text-neon-pink"
+                                            />
+                                            <span className="text-xs text-gray-300">
+                                                Hostel Chaos
+                                            </span>
                                         </div>
                                         <div className="flex items-center gap-1.5 bg-black/40 px-3 py-1.5 rounded-lg border border-white/10">
-                                            <Zap size={14} className="text-neon-yellow" />
-                                            <span className="text-xs text-gray-300">Student Struggles</span>
+                                            <Zap
+                                                size={14}
+                                                className="text-neon-yellow"
+                                            />
+                                            <span className="text-xs text-gray-300">
+                                                Student Struggles
+                                            </span>
                                         </div>
                                     </div>
                                 </div>
@@ -910,6 +1104,15 @@ const App = () => {
     const [activeTab, setActiveTab] = useState("home");
     const [modalOpen, setModalOpen] = useState(false);
     const [selectedGame, setSelectedGame] = useState(null);
+    const [warningVisible, setWarningVisible] = useState(true);
+
+    // Check localStorage for warning visibility on mount
+    useEffect(() => {
+        const warningClosed = localStorage.getItem("warningClosed");
+        if (warningClosed === "true") {
+            setWarningVisible(false);
+        }
+    }, []);
 
     const scrollToSection = (id) => {
         const element = document.getElementById(id);
@@ -947,12 +1150,27 @@ const App = () => {
         closeJoinModal();
     };
 
+    const handleCloseWarning = () => {
+        setWarningVisible(false);
+        localStorage.setItem("warningClosed", "true");
+    };
+
     return (
         <>
             <style>{styles}</style>
             <CyberBackground />
             <div className="scanlines"></div>
             <div className="min-h-screen relative w-full" style={{ zIndex: 1 }}>
+                {/* Warning Navbar */}
+                <AnimatePresence>
+                    {warningVisible && (
+                        <WarningNavbar
+                            onClose={handleCloseWarning}
+                            isVisible={warningVisible}
+                        />
+                    )}
+                </AnimatePresence>
+
                 {/* Modal */}
                 <AnimatePresence>
                     {modalOpen && (
@@ -967,7 +1185,11 @@ const App = () => {
                 </AnimatePresence>
 
                 {/* --- NAVBAR --- */}
-                <nav className="fixed top-0 left-0 w-full z-50 glass-panel border-b border-white/10">
+                <nav
+                    className={`fixed left-0 w-full z-50 glass-panel border-b border-white/10 transition-all duration-300 ${
+                        warningVisible ? "top-[52px]" : "top-0"
+                    }`}
+                >
                     <div className="container mx-auto px-4 md:px-6">
                         <div className="flex items-center justify-between h-20">
                             {/* Logo */}
@@ -1046,7 +1268,9 @@ const App = () => {
                 {/* --- HERO SECTION --- */}
                 <section
                     id="home"
-                    className="relative min-h-screen flex items-center pt-20 overflow-hidden"
+                    className={`relative min-h-screen flex items-center overflow-hidden transition-all duration-300 ${
+                        warningVisible ? "pt-[132px]" : "pt-20"
+                    }`}
                 >
                     <div className="container mx-auto px-4 text-center z-10">
                         <div className="inline-block px-4 py-1 border border-neon-cyan/30 rounded-full bg-neon-cyan/10 mb-6 backdrop-blur-sm animate-pulse">
@@ -1183,7 +1407,7 @@ const App = () => {
                                 <div className="w-20 h-1 bg-neon-yellow"></div>
                                 <p className="text-gray-300 leading-relaxed text-lg">
                                     {FEST_DATA.name} {FEST_DATA.year} is not
-                                    just a tech fest; it’s a platform to explore
+                                    just a tech fest; it's a platform to explore
                                     ideas beyond the syllabus. Join the
                                     brightest minds from our campus for days
                                     filled with creativity, collaboration, and
@@ -1191,8 +1415,8 @@ const App = () => {
                                     you think and work as a team.
                                 </p>
                                 <p className="text-gray-400 leading-relaxed">
-                                    Whether you’re a marketer, a coder, or a
-                                    problem-solver, there’s a place for you in
+                                    Whether you're a marketer, a coder, or a
+                                    problem-solver, there's a place for you in
                                     the verse. Pitch ideas, code together, crack
                                     interview-style quizzes, and solve clues to
                                     unlock the final prize—while pushing your
