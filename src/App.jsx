@@ -169,7 +169,7 @@ export const CONTACT_INFO = {
 };
 
 export const WARNING_CONFIG = {
-    text: "🔔 IMPORTANT NOTICE: Registrations for The One Quest (Treasure Hunt) are now CLOSED. Slots are full!  Explore other exciting games at TechNix 2026 and join the fun! 🎮⚡",
+    text: "🔔 IMPORTANT NOTICE: Registrations for The One Quest (Treasure Hunt) are now CLOSED. LAST 15 Minutes to Register...... Close at 1 : 15",
 };
 
 /* --- CUSTOM STYLES (styles.css equivalent) --- */
